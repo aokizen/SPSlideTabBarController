@@ -1,0 +1,261 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6F6D92091C7AE9AD00CBD75D /* SPSlideTabViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F6D92081C7AE9AD00CBD75D /* SPSlideTabViewController.h */; };
+		6F6D920B1C7AE9AD00CBD75D /* SPSlideTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6D920A1C7AE9AD00CBD75D /* SPSlideTabViewController.m */; };
+		6F6D92171C7AEA7600CBD75D /* SPSlideTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6D92161C7AEA7600CBD75D /* SPSlideTabView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6F6D92031C7AE9AD00CBD75D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				6F6D92091C7AE9AD00CBD75D /* SPSlideTabViewController.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6F6D92051C7AE9AD00CBD75D /* libSPSlideTabViewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSPSlideTabViewController.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F6D92081C7AE9AD00CBD75D /* SPSlideTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPSlideTabViewController.h; sourceTree = "<group>"; };
+		6F6D920A1C7AE9AD00CBD75D /* SPSlideTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPSlideTabViewController.m; sourceTree = "<group>"; };
+		6F6D92141C7AEA5700CBD75D /* SPSlideTabViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSlideTabViewProtocol.h; sourceTree = "<group>"; };
+		6F6D92151C7AEA7600CBD75D /* SPSlideTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSlideTabView.h; sourceTree = "<group>"; };
+		6F6D92161C7AEA7600CBD75D /* SPSlideTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSlideTabView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6F6D92021C7AE9AD00CBD75D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6F6D91FC1C7AE9AD00CBD75D = {
+			isa = PBXGroup;
+			children = (
+				6F6D92071C7AE9AD00CBD75D /* SPSlideTabViewController */,
+				6F6D92061C7AE9AD00CBD75D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6F6D92061C7AE9AD00CBD75D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6F6D92051C7AE9AD00CBD75D /* libSPSlideTabViewController.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6F6D92071C7AE9AD00CBD75D /* SPSlideTabViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6F6D92141C7AEA5700CBD75D /* SPSlideTabViewProtocol.h */,
+				6F6D92151C7AEA7600CBD75D /* SPSlideTabView.h */,
+				6F6D92161C7AEA7600CBD75D /* SPSlideTabView.m */,
+				6F6D92081C7AE9AD00CBD75D /* SPSlideTabViewController.h */,
+				6F6D920A1C7AE9AD00CBD75D /* SPSlideTabViewController.m */,
+			);
+			path = SPSlideTabViewController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6F6D92041C7AE9AD00CBD75D /* SPSlideTabViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F6D920E1C7AE9AD00CBD75D /* Build configuration list for PBXNativeTarget "SPSlideTabViewController" */;
+			buildPhases = (
+				6F6D92011C7AE9AD00CBD75D /* Sources */,
+				6F6D92021C7AE9AD00CBD75D /* Frameworks */,
+				6F6D92031C7AE9AD00CBD75D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SPSlideTabViewController;
+			productName = SPSlideTabViewController;
+			productReference = 6F6D92051C7AE9AD00CBD75D /* libSPSlideTabViewController.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6F6D91FD1C7AE9AD00CBD75D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = aokizen;
+				TargetAttributes = {
+					6F6D92041C7AE9AD00CBD75D = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 6F6D92001C7AE9AD00CBD75D /* Build configuration list for PBXProject "SPSlideTabViewController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6F6D91FC1C7AE9AD00CBD75D;
+			productRefGroup = 6F6D92061C7AE9AD00CBD75D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6F6D92041C7AE9AD00CBD75D /* SPSlideTabViewController */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6F6D92011C7AE9AD00CBD75D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F6D920B1C7AE9AD00CBD75D /* SPSlideTabViewController.m in Sources */,
+				6F6D92171C7AEA7600CBD75D /* SPSlideTabView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6F6D920C1C7AE9AD00CBD75D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6F6D920D1C7AE9AD00CBD75D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6F6D920F1C7AE9AD00CBD75D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		6F6D92101C7AE9AD00CBD75D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6F6D92001C7AE9AD00CBD75D /* Build configuration list for PBXProject "SPSlideTabViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F6D920C1C7AE9AD00CBD75D /* Debug */,
+				6F6D920D1C7AE9AD00CBD75D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6F6D920E1C7AE9AD00CBD75D /* Build configuration list for PBXNativeTarget "SPSlideTabViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F6D920F1C7AE9AD00CBD75D /* Debug */,
+				6F6D92101C7AE9AD00CBD75D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6F6D91FD1C7AE9AD00CBD75D /* Project object */;
+}
