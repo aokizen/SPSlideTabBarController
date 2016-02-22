@@ -1,6 +1,6 @@
 //
-//  SPSlideTabViewProtocol.h
-//  SPSlideTabViewController
+//  SPSlideTabBarProtocol.h
+//  SPSlideTabBarController
 //
 //  Created by Spring on 16/2/22.
 //  Copyright © 2016年 aokizen. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol SPSlideTabViewProtocol <NSObject>
+@protocol SPSlideTabBarProtocol <NSObject>
 
 @required
 - (instancetype)initWithTabTitles:(NSArray <NSString *> *)titles;

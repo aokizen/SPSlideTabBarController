@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F698FB81C7B001800E9299E /* SPSlideTabViewProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F6D92141C7AEA5700CBD75D /* SPSlideTabViewProtocol.h */; };
-		6F698FB91C7B001800E9299E /* SPSlideTabView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F6D92151C7AEA7600CBD75D /* SPSlideTabView.h */; };
-		6F6D92091C7AE9AD00CBD75D /* SPSlideTabViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F6D92081C7AE9AD00CBD75D /* SPSlideTabViewController.h */; };
-		6F6D920B1C7AE9AD00CBD75D /* SPSlideTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6D920A1C7AE9AD00CBD75D /* SPSlideTabViewController.m */; };
-		6F6D92171C7AEA7600CBD75D /* SPSlideTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6D92161C7AEA7600CBD75D /* SPSlideTabView.m */; };
+		6F15517F1C7B0AD200B9EBBC /* SPSlideTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1551791C7B0AD200B9EBBC /* SPSlideTabBar.m */; };
+		6F1551801C7B0AD200B9EBBC /* SPSlideTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F15517B1C7B0AD200B9EBBC /* SPSlideTabBarController.m */; };
+		6F1551811C7B0AD200B9EBBC /* SPSlideTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F15517D1C7B0AD200B9EBBC /* SPSlideTabBarItem.m */; };
+		6F1551A01C7B0CC500B9EBBC /* SPSlideTabBar.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F1551781C7B0AD200B9EBBC /* SPSlideTabBar.h */; };
+		6F1551A11C7B0CC500B9EBBC /* SPSlideTabBarController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F15517A1C7B0AD200B9EBBC /* SPSlideTabBarController.h */; };
+		6F1551A21C7B0CC500B9EBBC /* SPSlideTabBarItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F15517C1C7B0AD200B9EBBC /* SPSlideTabBarItem.h */; };
+		6F1551A31C7B0CC500B9EBBC /* SPSlideTabBarProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F15517E1C7B0AD200B9EBBC /* SPSlideTabBarProtocol.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -21,21 +23,24 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				6F698FB81C7B001800E9299E /* SPSlideTabViewProtocol.h in CopyFiles */,
-				6F698FB91C7B001800E9299E /* SPSlideTabView.h in CopyFiles */,
-				6F6D92091C7AE9AD00CBD75D /* SPSlideTabViewController.h in CopyFiles */,
+				6F1551A01C7B0CC500B9EBBC /* SPSlideTabBar.h in CopyFiles */,
+				6F1551A11C7B0CC500B9EBBC /* SPSlideTabBarController.h in CopyFiles */,
+				6F1551A21C7B0CC500B9EBBC /* SPSlideTabBarItem.h in CopyFiles */,
+				6F1551A31C7B0CC500B9EBBC /* SPSlideTabBarProtocol.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6F6D92051C7AE9AD00CBD75D /* libSPSlideTabViewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSPSlideTabViewController.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F6D92081C7AE9AD00CBD75D /* SPSlideTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPSlideTabViewController.h; sourceTree = "<group>"; };
-		6F6D920A1C7AE9AD00CBD75D /* SPSlideTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPSlideTabViewController.m; sourceTree = "<group>"; };
-		6F6D92141C7AEA5700CBD75D /* SPSlideTabViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSlideTabViewProtocol.h; sourceTree = "<group>"; };
-		6F6D92151C7AEA7600CBD75D /* SPSlideTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSlideTabView.h; sourceTree = "<group>"; };
-		6F6D92161C7AEA7600CBD75D /* SPSlideTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSlideTabView.m; sourceTree = "<group>"; };
+		6F1551781C7B0AD200B9EBBC /* SPSlideTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSlideTabBar.h; sourceTree = "<group>"; };
+		6F1551791C7B0AD200B9EBBC /* SPSlideTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSlideTabBar.m; sourceTree = "<group>"; };
+		6F15517A1C7B0AD200B9EBBC /* SPSlideTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSlideTabBarController.h; sourceTree = "<group>"; };
+		6F15517B1C7B0AD200B9EBBC /* SPSlideTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSlideTabBarController.m; sourceTree = "<group>"; };
+		6F15517C1C7B0AD200B9EBBC /* SPSlideTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSlideTabBarItem.h; sourceTree = "<group>"; };
+		6F15517D1C7B0AD200B9EBBC /* SPSlideTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSlideTabBarItem.m; sourceTree = "<group>"; };
+		6F15517E1C7B0AD200B9EBBC /* SPSlideTabBarProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSlideTabBarProtocol.h; sourceTree = "<group>"; };
+		6F6D92051C7AE9AD00CBD75D /* libSPSlideTabBarController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSPSlideTabBarController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,10 +54,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F1551771C7B0AD200B9EBBC /* SPSlideTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				6F1551781C7B0AD200B9EBBC /* SPSlideTabBar.h */,
+				6F1551791C7B0AD200B9EBBC /* SPSlideTabBar.m */,
+				6F15517A1C7B0AD200B9EBBC /* SPSlideTabBarController.h */,
+				6F15517B1C7B0AD200B9EBBC /* SPSlideTabBarController.m */,
+				6F15517C1C7B0AD200B9EBBC /* SPSlideTabBarItem.h */,
+				6F15517D1C7B0AD200B9EBBC /* SPSlideTabBarItem.m */,
+				6F15517E1C7B0AD200B9EBBC /* SPSlideTabBarProtocol.h */,
+			);
+			path = SPSlideTabBarController;
+			sourceTree = "<group>";
+		};
 		6F6D91FC1C7AE9AD00CBD75D = {
 			isa = PBXGroup;
 			children = (
-				6F6D92071C7AE9AD00CBD75D /* SPSlideTabViewController */,
+				6F1551771C7B0AD200B9EBBC /* SPSlideTabBarController */,
 				6F6D92061C7AE9AD00CBD75D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,29 +79,17 @@
 		6F6D92061C7AE9AD00CBD75D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6F6D92051C7AE9AD00CBD75D /* libSPSlideTabViewController.a */,
+				6F6D92051C7AE9AD00CBD75D /* libSPSlideTabBarController.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		6F6D92071C7AE9AD00CBD75D /* SPSlideTabViewController */ = {
-			isa = PBXGroup;
-			children = (
-				6F6D92141C7AEA5700CBD75D /* SPSlideTabViewProtocol.h */,
-				6F6D92151C7AEA7600CBD75D /* SPSlideTabView.h */,
-				6F6D92161C7AEA7600CBD75D /* SPSlideTabView.m */,
-				6F6D92081C7AE9AD00CBD75D /* SPSlideTabViewController.h */,
-				6F6D920A1C7AE9AD00CBD75D /* SPSlideTabViewController.m */,
-			);
-			path = SPSlideTabViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6F6D92041C7AE9AD00CBD75D /* SPSlideTabViewController */ = {
+		6F6D92041C7AE9AD00CBD75D /* SPSlideTabBarController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6F6D920E1C7AE9AD00CBD75D /* Build configuration list for PBXNativeTarget "SPSlideTabViewController" */;
+			buildConfigurationList = 6F6D920E1C7AE9AD00CBD75D /* Build configuration list for PBXNativeTarget "SPSlideTabBarController" */;
 			buildPhases = (
 				6F6D92011C7AE9AD00CBD75D /* Sources */,
 				6F6D92021C7AE9AD00CBD75D /* Frameworks */,
@@ -92,9 +99,9 @@
 			);
 			dependencies = (
 			);
-			name = SPSlideTabViewController;
+			name = SPSlideTabBarController;
 			productName = SPSlideTabViewController;
-			productReference = 6F6D92051C7AE9AD00CBD75D /* libSPSlideTabViewController.a */;
+			productReference = 6F6D92051C7AE9AD00CBD75D /* libSPSlideTabBarController.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -111,7 +118,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6F6D92001C7AE9AD00CBD75D /* Build configuration list for PBXProject "SPSlideTabViewController" */;
+			buildConfigurationList = 6F6D92001C7AE9AD00CBD75D /* Build configuration list for PBXProject "SPSlideTabBarController" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -123,7 +130,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6F6D92041C7AE9AD00CBD75D /* SPSlideTabViewController */,
+				6F6D92041C7AE9AD00CBD75D /* SPSlideTabBarController */,
 			);
 		};
 /* End PBXProject section */
@@ -133,8 +140,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F6D920B1C7AE9AD00CBD75D /* SPSlideTabViewController.m in Sources */,
-				6F6D92171C7AEA7600CBD75D /* SPSlideTabView.m in Sources */,
+				6F1551811C7B0AD200B9EBBC /* SPSlideTabBarItem.m in Sources */,
+				6F1551801C7B0AD200B9EBBC /* SPSlideTabBarController.m in Sources */,
+				6F15517F1C7B0AD200B9EBBC /* SPSlideTabBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +238,7 @@
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SPSlideTabBarController;
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -243,7 +251,7 @@
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SPSlideTabBarController;
 				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -254,7 +262,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6F6D92001C7AE9AD00CBD75D /* Build configuration list for PBXProject "SPSlideTabViewController" */ = {
+		6F6D92001C7AE9AD00CBD75D /* Build configuration list for PBXProject "SPSlideTabBarController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6F6D920C1C7AE9AD00CBD75D /* Debug */,
@@ -263,7 +271,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6F6D920E1C7AE9AD00CBD75D /* Build configuration list for PBXNativeTarget "SPSlideTabViewController" */ = {
+		6F6D920E1C7AE9AD00CBD75D /* Build configuration list for PBXNativeTarget "SPSlideTabBarController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6F6D920F1C7AE9AD00CBD75D /* Debug */,

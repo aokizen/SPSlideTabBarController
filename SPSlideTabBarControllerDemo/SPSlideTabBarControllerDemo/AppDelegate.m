@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  SPSlideTabViewControllerDemo
+//  SPSlideTabBarControllerDemo
 //
 //  Created by Spring on 16/2/22.
 //  Copyright © 2016年 aokizen. All rights reserved.
@@ -25,9 +25,12 @@
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
     HomeViewController *homeViewController = [[HomeViewController alloc] initWithDefaultViewControllers];
+    [homeViewController setTitle:@"homeViewController"];
     UINavigationController *homeNavController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
+    homeNavController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"navController" image:nil tag:0];
     
     HomeViewController *noNavHomeViewController = [[HomeViewController alloc] initWithDefaultViewControllers];
+    noNavHomeViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"viewController" image:nil tag:1];
     
     [tabBarController setViewControllers:@[homeNavController, noNavHomeViewController]];
     

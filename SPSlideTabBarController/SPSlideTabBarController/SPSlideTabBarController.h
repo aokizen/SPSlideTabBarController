@@ -1,6 +1,6 @@
 //
-//  SPSlideTabViewController.h
-//  SPSlideTabViewController
+//  SPSlideTabBarController.h
+//  SPSlideTabBarController
 //
 //  Created by Spring on 16/2/22.
 //  Copyright © 2016年 aokizen. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "SPSlideTabViewProtocol.h"
+#import "SPSlideTabBarProtocol.h"
 
-@interface SPSlideTabViewController : UIViewController
+@interface SPSlideTabBarController : UIViewController
 
-@property (strong, nonatomic, nonnull) UIView<SPSlideTabViewProtocol> *slideTabView;
+@property (strong, nonatomic, nonnull) UIView<SPSlideTabBarProtocol> *slideTabView;
 @property (strong, nonatomic, readonly, nonnull) UIScrollView *contentScrollView;
 
 @property (strong, nonatomic, nullable) NSArray <UIViewController *> *viewControllers;

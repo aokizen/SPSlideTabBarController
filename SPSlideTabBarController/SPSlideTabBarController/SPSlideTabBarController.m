@@ -1,22 +1,22 @@
 //
-//  SPSlideTabViewController.m
-//  SPSlideTabViewController
+//  SPSlideTabBarController.m
+//  SPSlideTabBarController
 //
 //  Created by Spring on 16/2/22.
 //  Copyright © 2016年 aokizen. All rights reserved.
 //
 
-#import "SPSlideTabViewController.h"
+#import "SPSlideTabBarController.h"
 
-#import "SPSlideTabView.h"
+#import "SPSlideTabBar.h"
 
-@interface SPSlideTabViewController () <UIScrollViewDelegate>
+@interface SPSlideTabBarController () <UIScrollViewDelegate>
 
 @property (assign, nonatomic) NSUInteger initTabIndex;
 
 @end
 
-@implementation SPSlideTabViewController
+@implementation SPSlideTabBarController
 
 @synthesize contentScrollView = _contentScrollView;
 
@@ -75,9 +75,9 @@
     [self.view bringSubviewToFront:self.slideTabView];
 }
 
-- (UIView<SPSlideTabViewProtocol> *)slideTabView {
+- (UIView<SPSlideTabBarProtocol> *)slideTabView {
     if (!_slideTabView) {
-        _slideTabView = [SPFixedSlideTabView new];
+        _slideTabView = [SPFixedSlideTabBar new];
         [_slideTabView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), _slideTabView.intrinsicContentSize.height)];
         [_slideTabView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth];
     }
