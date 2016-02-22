@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F698FB81C7B001800E9299E /* SPSlideTabViewProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F6D92141C7AEA5700CBD75D /* SPSlideTabViewProtocol.h */; };
+		6F698FB91C7B001800E9299E /* SPSlideTabView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F6D92151C7AEA7600CBD75D /* SPSlideTabView.h */; };
 		6F6D92091C7AE9AD00CBD75D /* SPSlideTabViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F6D92081C7AE9AD00CBD75D /* SPSlideTabViewController.h */; };
 		6F6D920B1C7AE9AD00CBD75D /* SPSlideTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6D920A1C7AE9AD00CBD75D /* SPSlideTabViewController.m */; };
 		6F6D92171C7AEA7600CBD75D /* SPSlideTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6D92161C7AEA7600CBD75D /* SPSlideTabView.m */; };
@@ -19,6 +21,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				6F698FB81C7B001800E9299E /* SPSlideTabViewProtocol.h in CopyFiles */,
+				6F698FB91C7B001800E9299E /* SPSlideTabView.h in CopyFiles */,
 				6F6D92091C7AE9AD00CBD75D /* SPSlideTabViewController.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,10 +177,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -210,28 +216,38 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};
 		6F6D920F1C7AE9AD00CBD75D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
 		6F6D92101C7AE9AD00CBD75D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RESOURCES_TARGETED_DEVICE_FAMILY = "";
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};
@@ -254,6 +270,7 @@
 				6F6D92101C7AE9AD00CBD75D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

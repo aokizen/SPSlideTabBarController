@@ -6,8 +6,24 @@
 //  Copyright © 2016年 aokizen. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface SPSlideTabViewController : NSObject
+#import "SPSlideTabViewProtocol.h"
+
+@interface SPSlideTabViewController : UIViewController
+
+@property (strong, nonatomic, nonnull) UIView<SPSlideTabViewProtocol> *slideTabView;
+@property (strong, nonatomic, readonly, nonnull) UIScrollView *contentScrollView;
+
+@property (strong, nonatomic, nullable) NSArray <UIViewController *> *viewControllers;
+
+@property (assign, nonatomic, readonly) NSUInteger selectedTabIndex;
+
+- (nonnull instancetype)initWithViewController:(nonnull NSArray <UIViewController *> *)viewControllers;
+- (nonnull instancetype)initWithViewController:(nonnull NSArray <UIViewController *> *)viewControllers initTabIndex:(NSUInteger)initTabIndex;
+
+- (void)selectTabIndex:(NSUInteger)tabIndex animated:(BOOL)animated;
+- (void)addViewController:(nonnull UIViewController *) viewController;
+- (void)addViewController:(nonnull UIViewController *) viewController atIndex:(NSUInteger)tabIndex;
 
 @end

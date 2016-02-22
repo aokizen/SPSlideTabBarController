@@ -10,4 +10,18 @@
 
 @protocol SPSlideTabViewProtocol <NSObject>
 
+@required
+- (instancetype)initWithTabTitles:(NSArray <NSString *> *)titles;
+
+//- (void)updateColors;
+//- (void)configureTagViews;
+//- (void)layoutTagSubviews;
+
+- (void)modifyTabTitle:(NSString *)title atIndex:(NSUInteger)index;
+- (void)modifyTabAttributedTitle:(NSAttributedString *)attributedTitle atIndex:(NSUInteger)index;
+
+- (void)fixIndicatorOffset:(CGFloat)offset;
+- (void)selectTabAtIndex:(NSUInteger)index;
+- (void)scrollIndicatorToIndex:(NSUInteger)selectedIndex;
+
 @end

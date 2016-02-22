@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import "HomeViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +19,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    
+    HomeViewController *homeViewController = [[HomeViewController alloc] initWithDefaultViewControllers];
+    UINavigationController *homeNavController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
+    
+    HomeViewController *noNavHomeViewController = [[HomeViewController alloc] initWithDefaultViewControllers];
+    
+    [tabBarController setViewControllers:@[homeNavController, noNavHomeViewController]];
+    
+    [self.window setRootViewController:tabBarController];
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
