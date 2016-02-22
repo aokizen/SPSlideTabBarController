@@ -57,13 +57,13 @@
 		6F1551771C7B0AD200B9EBBC /* SPSlideTabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				6F15517E1C7B0AD200B9EBBC /* SPSlideTabBarProtocol.h */,
 				6F1551781C7B0AD200B9EBBC /* SPSlideTabBar.h */,
 				6F1551791C7B0AD200B9EBBC /* SPSlideTabBar.m */,
-				6F15517A1C7B0AD200B9EBBC /* SPSlideTabBarController.h */,
-				6F15517B1C7B0AD200B9EBBC /* SPSlideTabBarController.m */,
 				6F15517C1C7B0AD200B9EBBC /* SPSlideTabBarItem.h */,
 				6F15517D1C7B0AD200B9EBBC /* SPSlideTabBarItem.m */,
-				6F15517E1C7B0AD200B9EBBC /* SPSlideTabBarProtocol.h */,
+				6F15517A1C7B0AD200B9EBBC /* SPSlideTabBarController.h */,
+				6F15517B1C7B0AD200B9EBBC /* SPSlideTabBarController.m */,
 			);
 			path = SPSlideTabBarController;
 			sourceTree = "<group>";

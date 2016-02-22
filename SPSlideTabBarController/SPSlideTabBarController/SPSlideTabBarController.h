@@ -12,10 +12,10 @@
 
 @interface SPSlideTabBarController : UIViewController
 
-@property (strong, nonatomic, nonnull) UIView<SPSlideTabBarProtocol> *slideTabView;
-@property (strong, nonatomic, readonly, nonnull) UIScrollView *contentScrollView;
+@property (nonnull, strong, nonatomic) UIView<SPSlideTabBarProtocol> *slideTabView;
+@property (nonnull, strong, nonatomic, readonly) UIScrollView *contentScrollView;
 
-@property (strong, nonatomic, nullable) NSArray <UIViewController *> *viewControllers;
+@property (nullable, strong, nonatomic) NSArray <UIViewController *> *viewControllers;
 
 @property (assign, nonatomic, readonly) NSUInteger selectedTabIndex;
 
@@ -25,5 +25,14 @@
 - (void)selectTabIndex:(NSUInteger)tabIndex animated:(BOOL)animated;
 - (void)addViewController:(nonnull UIViewController *) viewController;
 - (void)addViewController:(nonnull UIViewController *) viewController atIndex:(NSUInteger)tabIndex;
+
+@end
+
+@class SPSlideTabBarItem;
+
+@interface UIViewController (SPSlideTabBarItem)
+
+@property(null_resettable, nonatomic, strong) SPSlideTabBarItem *slideTabBarItem;
+@property(nullable, nonatomic, readonly, strong) SPSlideTabBarController *slideTabBarController;
 
 @end

@@ -10,4 +10,10 @@
 
 @interface SPSlideTabBarItem : NSObject
 
+@property (nullable, copy, nonatomic, readonly) NSString *title;
+@property (nullable, strong, nonatomic, readonly) NSAttributedString *attibutedTitle;
+
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title;
+- (nonnull instancetype)initWithAttributedTitle:(nullable NSAttributedString *)attributedTitle;
+
 @end

@@ -8,20 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+@class SPSlideTabBarItem;
+
 @protocol SPSlideTabBarProtocol <NSObject>
 
 @required
-- (instancetype)initWithTabTitles:(NSArray <NSString *> *)titles;
+- (instancetype)initWithTabBarItems:(NSArray <SPSlideTabBarItem *> *)tabBarItems;
 
-//- (void)updateColors;
-//- (void)configureTagViews;
-//- (void)layoutTagSubviews;
+- (void)setSlideTabBarItem:(SPSlideTabBarItem *)slideTabBarItem atIndex:(NSUInteger)index;
+- (NSArray <SPSlideTabBarItem *> *)slideTabBarItems;
+- (SPSlideTabBarItem *)slideTabBarItemAtIndex:(NSUInteger)index;
 
-- (void)modifyTabTitle:(NSString *)title atIndex:(NSUInteger)index;
-- (void)modifyTabAttributedTitle:(NSAttributedString *)attributedTitle atIndex:(NSUInteger)index;
-
-- (void)fixIndicatorOffset:(CGFloat)offset;
 - (void)selectTabAtIndex:(NSUInteger)index;
 - (void)scrollIndicatorToIndex:(NSUInteger)selectedIndex;
+
+- (void)fixIndicatorWithScrollOffset:(CGFloat)offset;
 
 @end

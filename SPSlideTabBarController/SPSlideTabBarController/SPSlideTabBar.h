@@ -12,6 +12,9 @@
 
 @interface SPFixedSlideTabBar : UIView <SPSlideTabBarProtocol>
 
+- (void)configureTabBarItemViews;
+- (void)layoutTabBarItemSubviews;
+
 @end
 
 @interface SPSizingSlideTabBar : SPFixedSlideTabBar

@@ -69,15 +69,25 @@
 #pragma mark - subviews
 
 - (void)configureSubviews {
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:self.slideTabView];
     [self.view addSubview:self.contentScrollView];
     
     [self.view bringSubviewToFront:self.slideTabView];
+    
+    [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    [self setAutomaticallyAdjustsScrollViewInsets:NO];
 }
 
 - (UIView<SPSlideTabBarProtocol> *)slideTabView {
     if (!_slideTabView) {
-        _slideTabView = [SPFixedSlideTabBar new];
+        
+        NSMutableArray <SPSlideTabBarItem *> *slideTabBarItems = [NSMutableArray array];
+        [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger index, BOOL *stop) {
+            [slideTabBarItems addObject:viewController.slideTabBarItem];
+        }];
+        
+        _slideTabView = [[SPFixedSlideTabBar alloc] initWithTabBarItems:slideTabBarItems];;
         [_slideTabView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), _slideTabView.intrinsicContentSize.height)];
         [_slideTabView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth];
     }
@@ -276,6 +286,36 @@
     [self addChildViewController:viewController];
     [self.contentScrollView addSubview:viewController.view];
     [viewController didMoveToParentViewController:self];
+}
+
+@end
+
+
+#import <objc/runtime.h>
+#import "SPSlideTabBarItem.h"
+
+@implementation UIViewController (SPSlideTabBarItem)
+
+@dynamic slideTabBarItem;
+
+- (SPSlideTabBarItem *)slideTabBarItem {
+    SPSlideTabBarItem *tabBarItem = objc_getAssociatedObject(self, @selector(slideTabBarItem));
+    if (tabBarItem == nil) {
+        tabBarItem = [[SPSlideTabBarItem alloc] initWithTitle:self.title];
+    }
+    return tabBarItem;
+}
+
+- (void)setSlideTabBarItem:(SPSlideTabBarItem *)slideTabBarItem {
+    objc_setAssociatedObject(self, @selector(setSlideTabBarItem:), slideTabBarItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (SPSlideTabBarController *)slideTabBarController {
+    UIViewController *parentViewController = self.parentViewController;
+    if (parentViewController && [parentViewController isKindOfClass:[SPSlideTabBarController class]]) {
+        return (SPSlideTabBarController *)parentViewController;
+    }
+    return nil;
 }
 
 @end
