@@ -10,10 +10,20 @@
 
 #import "SPSlideTabBarProtocol.h"
 
+@protocol SPSlideTabBarDelegate <NSObject>
+
+- (void)slideTabBar:(UIView <SPSlideTabBarProtocol> *)slideTabBar didSelectIndex:(NSUInteger)index;
+
+@end
+
 @interface SPFixedSlideTabBar : UIView <SPSlideTabBarProtocol>
 
-- (void)configureTabBarItemViews;
+@property (weak, nonatomic) id<SPSlideTabBarDelegate> delegate;
+
+- (void)initializeTabBarItemViews;
 - (void)layoutTabBarItemSubviews;
+
+
 
 @end
 

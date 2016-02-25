@@ -26,6 +26,13 @@
 - (void)addViewController:(nonnull UIViewController *) viewController;
 - (void)addViewController:(nonnull UIViewController *) viewController atIndex:(NSUInteger)tabIndex;
 
+#pragma mark - did scroll
+
+/**
+ for override
+ */
+- (void)didScrollToTabIndex:(NSUInteger)tabIndex;
+
 @end
 
 @class SPSlideTabBarItem;

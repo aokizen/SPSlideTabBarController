@@ -32,7 +32,7 @@
 
 #import "SPSlideTabBar.h"
 
-@interface SPSlideTabBarController () <UIScrollViewDelegate>
+@interface SPSlideTabBarController () <UIScrollViewDelegate, SPSlideTabBarDelegate>
 
 @property (assign, nonatomic) NSUInteger initTabIndex;
 
@@ -82,10 +82,18 @@
 }
 
 - (void)selectTabIndex:(NSUInteger)tabIndex animated:(BOOL)animated {
-    
-    
+    [self.slideTabView selectTabAtIndex:tabIndex];
     _selectedTabIndex = tabIndex;
     [self.contentScrollView setContentOffset:CGPointMake(CGRectGetWidth(self.contentScrollView.bounds) * tabIndex, 0) animated:animated];
+}
+
+#pragma mark - did scroll
+
+/**
+ for override
+ */
+- (void)didScrollToTabIndex:(NSUInteger)tabIndex {
+    
 }
 
 #pragma mark - subviews
@@ -112,6 +120,7 @@
         _slideTabView = [[SPFixedSlideTabBar alloc] initWithTabBarItems:slideTabBarItems];;
         [_slideTabView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), _slideTabView.intrinsicContentSize.height)];
         [_slideTabView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth];
+        [((SPFixedSlideTabBar *)_slideTabView) setDelegate:self];
     }
     return _slideTabView;
 }
@@ -232,7 +241,19 @@
     
     _selectedTabIndex = page;
     
+    [self didScrollToTabIndex:page];
+}
+
+
+#pragma mark - SPSlideTabBarDelegate
+
+- (void)slideTabBar:(UIView<SPSlideTabBarProtocol> *)slideTabBar didSelectIndex:(NSUInteger)index {
     
+    [self.contentScrollView sb_scrollToPage:index];
+    [self makeViewControllerVisibleAtIndex:index];
+    _selectedTabIndex = index;
+    
+    [self didScrollToTabIndex:index];
 }
 
 #pragma mark -

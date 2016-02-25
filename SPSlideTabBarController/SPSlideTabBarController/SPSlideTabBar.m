@@ -117,8 +117,9 @@
     [buttons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger index, BOOL *stop) {
         if (button == sender) {
             [self selectTabAtIndex:index];
-            
-            
+            if (self.delegate && [self.delegate respondsToSelector:@selector(slideTabBar:didSelectIndex:)]) {
+                [self.delegate slideTabBar:self didSelectIndex:index];
+            }
             *stop = YES;
         }
     }];
@@ -142,6 +143,13 @@
 }
 
 - (void)selectTabAtIndex:(NSUInteger)index {
+    NSUInteger buttonIndex = 0;
+    NSArray <UIButton *> *buttons = self.tabBarButtonSubviews;
+    for (UIButton *button in buttons) {
+        button.selected = (buttonIndex == index);
+        buttonIndex += 1;
+    }
+    
     _selectedTabIndex = index;
 }
 
@@ -150,11 +158,74 @@
 }
 
 - (void)scrollIndicatorToIndex:(NSUInteger)selectedIndex {
-    
+    if (selectedIndex < self.tabBarButtonSubviews.count) {
+        UIButton *button = [self.tabBarButtonSubviews objectAtIndex:selectedIndex];
+        if (button) {
+            
+            CGRect frame = self.indicatorLine.frame;
+            frame.size.width = button.titleLabel.intrinsicContentSize.width;
+            frame.origin.x = CGRectGetMidX(button.frame) - CGRectGetWidth(frame) / 2.0;
+            self.indicatorLine.frame = frame;
+            
+            _selectedTabIndex = selectedIndex;
+            
+            [UIView animateWithDuration:0.25 animations:^ {
+                [self setNeedsLayout];
+            }completion:^(BOOL finished) {
+                [self selectTabAtIndex:selectedIndex];
+            }];
+        }
+    }
 }
 
 - (void)fixIndicatorWithScrollOffset:(CGFloat)offset {
+    NSArray <UIButton *> *buttons = self.tabBarButtonSubviews;
+    NSUInteger selectedIndex = self.selectedTabIndex;
     
+    if (selectedIndex < buttons.count) {
+        
+        UIButton *button = [buttons objectAtIndex:selectedIndex];
+        CGFloat pageOffset = offset - CGRectGetWidth(self.frame) * selectedIndex;
+        
+        NSInteger indexOffset = pageOffset / CGRectGetWidth(self.frame);
+        if (((NSInteger)pageOffset % (NSInteger)CGRectGetWidth(self.frame)) != 0) {
+            indexOffset += ((offset > CGRectGetWidth(self.frame) * selectedIndex) ? 1 : -1);
+        }
+        NSInteger targetIndex = selectedIndex + indexOffset;
+        
+        if (targetIndex < 0) {
+            targetIndex = 0;
+        }
+        else if (targetIndex >= buttons.count) {
+            targetIndex = buttons.count - 1;
+        }
+        
+        UIButton *targetButton = [buttons objectAtIndex:targetIndex];
+        
+        if (targetButton == nil) {
+            return;
+        }
+        
+        if (targetButton == button) {
+            CGRect frame = self.indicatorLine.frame;
+            frame.size.width = targetButton.titleLabel.intrinsicContentSize.width;
+            frame.origin.x = CGRectGetMidX(targetButton.frame) - CGRectGetWidth(frame) / 2.0;
+            self.indicatorLine.frame = frame;
+            return;
+        }
+        
+        CGFloat denominator = ((CGFloat)(abs((int)targetIndex - (int)selectedIndex) * CGRectGetWidth(self.frame)));
+        if (denominator == 0) {
+            return;
+        }
+        
+        CGFloat percentage = ((CGFloat)fabs(pageOffset)) / denominator;
+        
+        CGRect frame = self.indicatorLine.frame;
+        frame.size.width = button.titleLabel.intrinsicContentSize.width + (targetButton.titleLabel.intrinsicContentSize.width - button.titleLabel.intrinsicContentSize.width) * percentage;
+        frame.origin.x = CGRectGetMidX(button.frame) - CGRectGetWidth(frame) / 2.0 + (CGRectGetMidX(targetButton.frame) - CGRectGetMidX(button.frame)) *percentage;
+        self.indicatorLine.frame = frame;
+    }
 }
 
 #pragma mark - getter

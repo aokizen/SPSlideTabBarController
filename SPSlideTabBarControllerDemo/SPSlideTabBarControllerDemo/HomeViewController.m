@@ -18,11 +18,9 @@
     
     UIViewController *tableViewController = [[UIViewController alloc] init];
     [tableViewController setTitle:@"table"];
-    [tableViewController.view setBackgroundColor:[UIColor whiteColor]];
     
     UIViewController *collectionViewController = [[UIViewController alloc] init];
     [collectionViewController setTitle:@"collection"];
-    [collectionViewController.view setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
     
     UIViewController *scrollViewController = [[UIViewController alloc] init];
     [scrollViewController setTitle:@"scroll"];
@@ -44,13 +42,19 @@
     
     [self.slideTabView setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
     
-    [self.viewControllers.firstObject.view setBackgroundColor:[UIColor whiteColor]];
-    [[self.viewControllers objectAtIndex:1].view setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
+    [self.viewControllers.firstObject.view setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
+    [[self.viewControllers objectAtIndex:1].view setBackgroundColor:[UIColor whiteColor]];
+    [[self.viewControllers objectAtIndex:2].view setBackgroundColor:[UIColor yellowColor]];
+    [[self.viewControllers lastObject].view setBackgroundColor:[UIColor orangeColor]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)hidesBottomBarWhenPushed {
+    return NO;
 }
 
 /*
