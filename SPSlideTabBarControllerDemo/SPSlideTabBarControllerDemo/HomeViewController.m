@@ -16,12 +16,18 @@
 
 - (instancetype)initWithDefaultViewControllers {
     
-    UITableViewController *tableViewController = [[UITableViewController alloc] init];
+    UIViewController *tableViewController = [[UIViewController alloc] init];
     [tableViewController setTitle:@"table"];
-    UICollectionViewController *collectionViewController = [[UICollectionViewController alloc] init];
+    [tableViewController.view setBackgroundColor:[UIColor whiteColor]];
+    
+    UIViewController *collectionViewController = [[UIViewController alloc] init];
     [collectionViewController setTitle:@"collection"];
+    [collectionViewController.view setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
+    
     UIViewController *scrollViewController = [[UIViewController alloc] init];
     [scrollViewController setTitle:@"scroll"];
+    
+    
     UIViewController *viewController = [[UIViewController alloc] init];
     [viewController setTitle:@"general"];
     
@@ -36,7 +42,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.slideTabView setBackgroundColor:[UIColor yellowColor]];
+    [self.slideTabView setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
+    
+    [self.viewControllers.firstObject.view setBackgroundColor:[UIColor whiteColor]];
+    [[self.viewControllers objectAtIndex:1].view setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
 }
 
 - (void)didReceiveMemoryWarning {

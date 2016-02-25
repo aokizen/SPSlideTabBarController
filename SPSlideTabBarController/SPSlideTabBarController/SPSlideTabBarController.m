@@ -8,6 +8,28 @@
 
 #import "SPSlideTabBarController.h"
 
+@interface UIScrollView (SPSlidePage)
+
+- (NSUInteger)sb_currentPage;
+- (void)sb_scrollToPage:(NSUInteger)page;
+
+@end
+
+@implementation UIScrollView (SBScrollViewPage)
+
+- (NSUInteger)sb_currentPage {
+    return (NSUInteger)(self.contentOffset.x / CGRectGetWidth(self.frame));
+}
+
+- (void)sb_scrollToPage:(NSUInteger)page {
+    CGFloat offsetX = CGRectGetWidth(self.frame) * (CGFloat)page;
+    CGPoint currentOffset = self.contentOffset;
+    [self setContentOffset:CGPointMake(offsetX, currentOffset.y) animated:YES];
+}
+
+@end
+
+
 #import "SPSlideTabBar.h"
 
 @interface SPSlideTabBarController () <UIScrollViewDelegate>
@@ -99,8 +121,8 @@
         _contentScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
         [_contentScrollView setPagingEnabled:YES];;
         [_contentScrollView setDelegate:self];
-        [_contentScrollView setShowsHorizontalScrollIndicator:NO];
-        [_contentScrollView setShowsVerticalScrollIndicator:NO];
+//        [_contentScrollView setShowsHorizontalScrollIndicator:NO];
+//        [_contentScrollView setShowsVerticalScrollIndicator:NO];
         [_contentScrollView setFrame:CGRectMake(0, CGRectGetMaxY(self.slideTabView.frame), CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMaxY(self.slideTabView.frame))];
         [_contentScrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     }
@@ -162,17 +184,11 @@
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
+    
+    [self resizeScrollViewContentSizeWithScrollBoundsSize:self.contentScrollView.bounds.size];
 }
 
 #pragma mark - content container
-
-- (void)preferredContentSizeDidChangeForChildContentContainer:(id<UIContentContainer>)container {
-    
-}
-
-- (void)systemLayoutFittingSizeDidChangeForChildContentContainer:(id<UIContentContainer>)container {
-    
-}
 
 - (CGSize)sizeForChildContentContainer:(id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize {
     return CGSizeMake(parentSize.width, parentSize.height - CGRectGetHeight(self.slideTabView.frame));
@@ -183,7 +199,7 @@
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinator> context) {
         
     } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-
+        [self resizeScrollViewContentSizeWithScrollBoundsSize:CGSizeMake(size.width, size.height - CGRectGetHeight(self.slideTabView.frame))];
     }];
     
     [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger index, BOOL *stop) {
@@ -196,7 +212,7 @@
 #pragma mark - rotate for iOS7
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    
+    [self resizeScrollViewContentSizeWithScrollBoundsSize:self.contentScrollView.bounds.size];
     
     
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
@@ -205,16 +221,37 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
+    [self.slideTabView fixIndicatorWithScrollOffset:scrollView.contentOffset.x];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    
+    NSUInteger page = self.contentScrollView.sb_currentPage;
+    [self.slideTabView selectTabAtIndex:page];
+    [self makeViewControllerVisibleAtIndex:page];
+    
+    _selectedTabIndex = page;
+    
     
 }
 
 #pragma mark -
 #pragma mark - private
 #pragma mark -
+
+#pragma mark - size
+
+- (void)resizeScrollViewContentSizeWithScrollBoundsSize:(CGSize)size {
+    
+    self.contentScrollView.contentSize = CGSizeMake(size.width * self.viewControllers.count, size.height);
+    
+    for (UIViewController *controller in self.childViewControllers) {
+        if ([self.viewControllers containsObject:controller]) {
+            NSUInteger index = [self.viewControllers indexOfObject:controller];
+            controller.view.frame = CGRectMake(size.width * (CGFloat)index, 0, size.width, size.height);
+        }
+    }
+}
 
 #pragma mark - appearance
 
@@ -284,6 +321,7 @@
 
     [viewController willMoveToParentViewController:self];
     [self addChildViewController:viewController];
+    [viewController.view setFrame:self.contentScrollView.bounds];
     [self.contentScrollView addSubview:viewController.view];
     [viewController didMoveToParentViewController:self];
 }

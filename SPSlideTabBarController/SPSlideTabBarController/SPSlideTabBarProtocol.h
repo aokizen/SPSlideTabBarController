@@ -20,6 +20,7 @@
 - (SPSlideTabBarItem *)slideTabBarItemAtIndex:(NSUInteger)index;
 
 - (void)selectTabAtIndex:(NSUInteger)index;
+- (NSUInteger)selectedTabIndex;
 - (void)scrollIndicatorToIndex:(NSUInteger)selectedIndex;
 
 - (void)fixIndicatorWithScrollOffset:(CGFloat)offset;
