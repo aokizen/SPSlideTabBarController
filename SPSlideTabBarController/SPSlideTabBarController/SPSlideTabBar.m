@@ -248,5 +248,62 @@
 
 @implementation SPSizingSlideTabBar
 
+- (instancetype)initWithTabBarItems:(NSArray<SPSlideTabBarItem *> *)tabBarItems {
+    self = [super initWithTabBarItems:tabBarItems];
+    if (self) {
+        [self.scrollView setScrollEnabled:YES];
+        self.scrollView.bounces = NO;
+    }
+    return self;
+}
+
+- (void)initializeTabBarItemViews {
+    [super initializeTabBarItemViews];
+}
+
+- (void)resetButtonPadding {
+    NSArray <UIButton *> *buttons = self.tabBarButtonSubviews;
+    CGFloat padding = ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 16 : 8);
+    [buttons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger index, BOOL *stop) {
+        [button setContentEdgeInsets:UIEdgeInsetsMake(8, padding, 8, padding)];
+    }];
+    
+    [self setNeedsLayout];
+}
+
+- (void)layoutTabBarItemSubviews {
+    NSArray <UIButton *> *buttons = self.tabBarButtonSubviews;
+    CGFloat padding = ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 16 : 8);
+    
+    __block UIButton *lastButton = nil;
+    [buttons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger index, BOOL *stop) {
+       
+        [button sizeToFit];
+        
+        CGRect frame = button.frame;
+        frame.origin.y = 0;
+        frame.size.height = CGRectGetHeight(self.frame);
+        if (lastButton == nil) {
+            frame.origin.x = padding;
+        }
+        else {
+            frame.origin.x = CGRectGetMaxX(lastButton.frame) + padding;
+        }
+        button.frame = frame;
+        lastButton = button;
+    }];
+    
+    [self.scrollView setContentSize:CGSizeMake(CGRectGetMaxX(lastButton.frame) + padding, CGRectGetHeight(self.frame))];
+}
+
+- (void)selectTabAtIndex:(NSUInteger)index {
+    [super selectTabAtIndex:index];
+    
+    CGFloat padding = ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 16 : 8);
+    if (self.selectedTabIndex < self.tabBarButtonSubviews.count) {
+        UIButton *button = [self.tabBarButtonSubviews objectAtIndex:self.selectedTabIndex];
+        [self.scrollView scrollRectToVisible:CGRectMake(CGRectGetMinX(button.frame) - padding, CGRectGetMinY(button.frame), CGRectGetWidth(button.frame) + padding * 2, CGRectGetHeight(button.frame)) animated:YES];
+    }
+}
 
 @end
