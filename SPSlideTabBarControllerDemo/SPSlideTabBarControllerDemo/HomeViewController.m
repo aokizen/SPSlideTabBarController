@@ -31,7 +31,10 @@
     
     self = [self initWithViewController:@[viewController, scrollViewController, tableViewController, collectionViewController]];
     if (self) {
-        
+        [self.viewControllers.firstObject.view setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
+        [[self.viewControllers objectAtIndex:1].view setBackgroundColor:[UIColor whiteColor]];
+        [[self.viewControllers objectAtIndex:2].view setBackgroundColor:[UIColor yellowColor]];
+        [[self.viewControllers lastObject].view setBackgroundColor:[UIColor orangeColor]];
     }
     return self;
 }
@@ -39,6 +42,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     [self.slideTabView setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
     

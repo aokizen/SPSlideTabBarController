@@ -10,18 +10,18 @@
 
 @interface UIScrollView (SPSlidePage)
 
-- (NSUInteger)sb_currentPage;
-- (void)sb_scrollToPage:(NSUInteger)page;
+- (NSUInteger)sp_currentPage;
+- (void)sp_scrollToPage:(NSUInteger)page;
 
 @end
 
 @implementation UIScrollView (SBScrollViewPage)
 
-- (NSUInteger)sb_currentPage {
+- (NSUInteger)sp_currentPage {
     return (NSUInteger)(self.contentOffset.x / CGRectGetWidth(self.frame));
 }
 
-- (void)sb_scrollToPage:(NSUInteger)page {
+- (void)sp_scrollToPage:(NSUInteger)page {
     CGFloat offsetX = CGRectGetWidth(self.frame) * (CGFloat)page;
     CGPoint currentOffset = self.contentOffset;
     [self setContentOffset:CGPointMake(offsetX, currentOffset.y) animated:YES];
@@ -32,7 +32,9 @@
 
 #import "SPSlideTabBar.h"
 
-@interface SPSlideTabBarController () <UIScrollViewDelegate, SPSlideTabBarDelegate>
+@interface SPSlideTabBarController () <UIScrollViewDelegate, SPSlideTabBarDelegate> {
+    BOOL _isFirstLoading;
+}
 
 @property (assign, nonatomic) NSUInteger initTabIndex;
 
@@ -43,6 +45,14 @@
 @synthesize contentScrollView = _contentScrollView;
 
 #pragma mark - initialize 
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _isFirstLoading = YES;
+    }
+    return self;
+}
 
 - (nonnull instancetype)initWithViewController:(nonnull NSArray<UIViewController *> *)viewControllers {
     self = [self init];
@@ -128,7 +138,10 @@
 - (UIScrollView *)contentScrollView {
     if (!_contentScrollView) {
         _contentScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-        [_contentScrollView setPagingEnabled:YES];;
+        [_contentScrollView setScrollEnabled:YES];
+//        [_contentScrollView setPagingEnabled:YES];
+        [_contentScrollView setDirectionalLockEnabled:YES];
+        
         [_contentScrollView setDelegate:self];
 //        [_contentScrollView setShowsHorizontalScrollIndicator:NO];
 //        [_contentScrollView setShowsVerticalScrollIndicator:NO];
@@ -158,6 +171,8 @@
         if (![self.childViewControllers containsObject:shouldInitViewController]) {
             [self addViewControllerToContainer:shouldInitViewController];
             _selectedTabIndex = self.initTabIndex;
+            
+            [self.slideTabView selectTabAtIndex:_selectedTabIndex];
         }
     }
 }
@@ -199,9 +214,9 @@
 
 #pragma mark - content container
 
-- (CGSize)sizeForChildContentContainer:(id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize {
-    return CGSizeMake(parentSize.width, parentSize.height - CGRectGetHeight(self.slideTabView.frame));
-}
+//- (CGSize)sizeForChildContentContainer:(id<UIContentContainer>)container withParentContainerSize:(CGSize)parentSize {
+//    return CGSizeMake(parentSize.width, parentSize.height - CGRectGetHeight(self.slideTabView.frame));
+//}
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     
@@ -209,6 +224,7 @@
         
     } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
         [self resizeScrollViewContentSizeWithScrollBoundsSize:CGSizeMake(size.width, size.height - CGRectGetHeight(self.slideTabView.frame))];
+        [self.contentScrollView sp_scrollToPage:self.selectedTabIndex];
     }];
     
     [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger index, BOOL *stop) {
@@ -222,6 +238,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self resizeScrollViewContentSizeWithScrollBoundsSize:self.contentScrollView.bounds.size];
+    [self.contentScrollView sp_scrollToPage:self.selectedTabIndex];
     
     
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
@@ -235,7 +252,7 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
-    NSUInteger page = self.contentScrollView.sb_currentPage;
+    NSUInteger page = self.contentScrollView.sp_currentPage;
     [self.slideTabView selectTabAtIndex:page];
     [self makeViewControllerVisibleAtIndex:page];
     
@@ -249,7 +266,7 @@
 
 - (void)slideTabBar:(UIView<SPSlideTabBarProtocol> *)slideTabBar didSelectIndex:(NSUInteger)index {
     
-    [self.contentScrollView sb_scrollToPage:index];
+    [self.contentScrollView sp_scrollToPage:index];
     [self makeViewControllerVisibleAtIndex:index];
     _selectedTabIndex = index;
     
@@ -266,9 +283,9 @@
     
     self.contentScrollView.contentSize = CGSizeMake(size.width * self.viewControllers.count, size.height);
     
-    for (UIViewController *controller in self.childViewControllers) {
-        if ([self.viewControllers containsObject:controller]) {
-            NSUInteger index = [self.viewControllers indexOfObject:controller];
+    for (NSUInteger index = 0; index < self.viewControllers.count; index ++) {
+        UIViewController *controller = [self.viewControllers objectAtIndex:index];
+        if ([self.childViewControllers containsObject:controller]) {
             controller.view.frame = CGRectMake(size.width * (CGFloat)index, 0, size.width, size.height);
         }
     }
@@ -330,6 +347,7 @@
     UIViewController *viewController = [self.viewControllers objectAtIndex:index];
     if (![self.childViewControllers containsObject:viewController]) {
         [self addViewControllerToContainer:viewController];
+        [self resizeScrollViewContentSizeWithScrollBoundsSize:self.contentScrollView.bounds.size];
     }
     
     if (currentIndex != index) {
