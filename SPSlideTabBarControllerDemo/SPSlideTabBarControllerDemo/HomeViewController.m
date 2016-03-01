@@ -8,6 +8,10 @@
 
 #import "HomeViewController.h"
 
+#import "TableViewController.h"
+#import "CollectionViewController.h"
+#import "ScrollViewController.h"
+
 @interface HomeViewController ()
 
 @end
@@ -16,25 +20,21 @@
 
 - (instancetype)initWithDefaultViewControllers {
     
-    UIViewController *tableViewController = [[UIViewController alloc] init];
+    TableViewController *tableViewController = [[TableViewController alloc] init];
     [tableViewController setTitle:@"table"];
     
-    UIViewController *collectionViewController = [[UIViewController alloc] init];
+    CollectionViewController *collectionViewController = [[CollectionViewController alloc] initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];
     [collectionViewController setTitle:@"collection"];
     
-    UIViewController *scrollViewController = [[UIViewController alloc] init];
+    ScrollViewController *scrollViewController = [[ScrollViewController alloc] init];
     [scrollViewController setTitle:@"scroll"];
     
     
     UIViewController *viewController = [[UIViewController alloc] init];
     [viewController setTitle:@"general"];
     
-    self = [self initWithViewController:@[viewController, scrollViewController, tableViewController, collectionViewController]];
+    self = [self initWithViewController:@[tableViewController, collectionViewController, scrollViewController, viewController]];
     if (self) {
-        [self.viewControllers.firstObject.view setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
-        [[self.viewControllers objectAtIndex:1].view setBackgroundColor:[UIColor whiteColor]];
-        [[self.viewControllers objectAtIndex:2].view setBackgroundColor:[UIColor yellowColor]];
-        [[self.viewControllers lastObject].view setBackgroundColor:[UIColor orangeColor]];
     }
     return self;
 }
@@ -43,12 +43,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    [self.slideTabView setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
+    [self.slideTabView setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1]];
     
-    [self.viewControllers.firstObject.view setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
-    [[self.viewControllers objectAtIndex:1].view setBackgroundColor:[UIColor whiteColor]];
-    [[self.viewControllers objectAtIndex:2].view setBackgroundColor:[UIColor yellowColor]];
-    [[self.viewControllers lastObject].view setBackgroundColor:[UIColor orangeColor]];
+    [self.viewControllers.firstObject.view setBackgroundColor:[UIColor yellowColor]];
+    [[self.viewControllers objectAtIndex:1].view setBackgroundColor:[UIColor orangeColor]];
+    [[self.viewControllers objectAtIndex:2].view setBackgroundColor:[UIColor whiteColor]];
+    [[self.viewControllers lastObject].view setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1]];
 }
 
 - (void)didReceiveMemoryWarning {

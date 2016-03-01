@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3701F6051C85CB8C00079285 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3701F6041C85CB8C00079285 /* TableViewController.m */; };
+		3701F6091C85CF2700079285 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3701F6081C85CF2700079285 /* CollectionViewController.m */; };
+		3701F60C1C85CF4000079285 /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3701F60B1C85CF4000079285 /* ScrollViewController.m */; };
+		3701F60F1C85CF4E00079285 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3701F60E1C85CF4E00079285 /* ViewController.m */; };
 		6F15518C1C7B0AE500B9EBBC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1551841C7B0AE500B9EBBC /* AppDelegate.m */; };
 		6F15518D1C7B0AE500B9EBBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1551851C7B0AE500B9EBBC /* Assets.xcassets */; };
 		6F15518E1C7B0AE500B9EBBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1551861C7B0AE500B9EBBC /* LaunchScreen.storyboard */; };
@@ -36,6 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3701F6031C85CB8C00079285 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		3701F6041C85CB8C00079285 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		3701F6071C85CF2700079285 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		3701F6081C85CF2700079285 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		3701F60A1C85CF4000079285 /* ScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewController.h; sourceTree = "<group>"; };
+		3701F60B1C85CF4000079285 /* ScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewController.m; sourceTree = "<group>"; };
+		3701F60D1C85CF4E00079285 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3701F60E1C85CF4E00079285 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6F1551831C7B0AE500B9EBBC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6F1551841C7B0AE500B9EBBC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6F1551851C7B0AE500B9EBBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,17 +92,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6F1551821C7B0AE500B9EBBC /* SPSlideTabBarControllerDemo */ = {
+		3701F6061C85CB9600079285 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				6F1551831C7B0AE500B9EBBC /* AppDelegate.h */,
-				6F1551841C7B0AE500B9EBBC /* AppDelegate.m */,
-				6F1551881C7B0AE500B9EBBC /* HomeViewController.h */,
-				6F1551891C7B0AE500B9EBBC /* HomeViewController.m */,
 				6F1551851C7B0AE500B9EBBC /* Assets.xcassets */,
 				6F1551861C7B0AE500B9EBBC /* LaunchScreen.storyboard */,
 				6F15518A1C7B0AE500B9EBBC /* Info.plist */,
 				6F15518B1C7B0AE500B9EBBC /* main.m */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		6F1551821C7B0AE500B9EBBC /* SPSlideTabBarControllerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				6F1551881C7B0AE500B9EBBC /* HomeViewController.h */,
+				6F1551891C7B0AE500B9EBBC /* HomeViewController.m */,
+				3701F6031C85CB8C00079285 /* TableViewController.h */,
+				3701F6041C85CB8C00079285 /* TableViewController.m */,
+				3701F6071C85CF2700079285 /* CollectionViewController.h */,
+				3701F6081C85CF2700079285 /* CollectionViewController.m */,
+				3701F60A1C85CF4000079285 /* ScrollViewController.h */,
+				3701F60B1C85CF4000079285 /* ScrollViewController.m */,
+				3701F60D1C85CF4E00079285 /* ViewController.h */,
+				3701F60E1C85CF4E00079285 /* ViewController.m */,
+				6F1551831C7B0AE500B9EBBC /* AppDelegate.h */,
+				6F1551841C7B0AE500B9EBBC /* AppDelegate.m */,
+				3701F6061C85CB9600079285 /* Support Files */,
 			);
 			path = SPSlideTabBarControllerDemo;
 			sourceTree = "<group>";
@@ -274,9 +302,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3701F60F1C85CF4E00079285 /* ViewController.m in Sources */,
 				6F15518C1C7B0AE500B9EBBC /* AppDelegate.m in Sources */,
 				6F1551911C7B0AE500B9EBBC /* main.m in Sources */,
 				6F15518F1C7B0AE500B9EBBC /* HomeViewController.m in Sources */,
+				3701F60C1C85CF4000079285 /* ScrollViewController.m in Sources */,
+				3701F6091C85CF2700079285 /* CollectionViewController.m in Sources */,
+				3701F6051C85CB8C00079285 /* TableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
