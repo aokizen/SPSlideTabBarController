@@ -42,10 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    
+
     [self.slideTabView setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];
     
     [self.viewControllers.firstObject.view setBackgroundColor:[UIColor colorWithWhite:0.7 alpha:1]];

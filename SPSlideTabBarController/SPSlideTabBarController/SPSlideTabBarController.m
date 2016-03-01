@@ -88,6 +88,7 @@
     else {
         NSMutableArray <UIViewController *> *viewControllers = [NSMutableArray arrayWithArray:self.viewControllers];
         [viewControllers insertObject:viewController atIndex:tabIndex];
+        self.viewControllers = viewControllers;
     }
 }
 
@@ -110,7 +111,11 @@
 
 - (void)configureSubviews {
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    [self configureSlideTabView];
     [self.view addSubview:self.slideTabView];
+    
+    [self configureContentScrollView];
     [self.view addSubview:self.contentScrollView];
     
     [self.view bringSubviewToFront:self.slideTabView];
@@ -119,36 +124,30 @@
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
 }
 
-- (UIView<SPSlideTabBarProtocol> *)slideTabView {
-    if (!_slideTabView) {
-        
-        NSMutableArray <SPSlideTabBarItem *> *slideTabBarItems = [NSMutableArray array];
-        [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger index, BOOL *stop) {
-            [slideTabBarItems addObject:viewController.slideTabBarItem];
-        }];
-        
-        _slideTabView = [[SPFixedSlideTabBar alloc] initWithTabBarItems:slideTabBarItems];;
-        [_slideTabView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), _slideTabView.intrinsicContentSize.height)];
-        [_slideTabView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth];
-        [((SPFixedSlideTabBar *)_slideTabView) setDelegate:self];
-    }
-    return _slideTabView;
+- (void)configureSlideTabView {
+    
+    NSMutableArray <SPSlideTabBarItem *> *slideTabBarItems = [NSMutableArray array];
+    [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger index, BOOL *stop) {
+        [slideTabBarItems addObject:viewController.slideTabBarItem];
+    }];
+    
+    _slideTabView = [[SPFixedSlideTabBar alloc] initWithTabBarItems:slideTabBarItems];;
+    [self.slideTabView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), self.slideTabView.intrinsicContentSize.height)];
+    [self.slideTabView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth];
+    [((SPFixedSlideTabBar *)self.slideTabView) setDelegate:self];
 }
 
-- (UIScrollView *)contentScrollView {
-    if (!_contentScrollView) {
-        _contentScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-        [_contentScrollView setScrollEnabled:YES];
-//        [_contentScrollView setPagingEnabled:YES];
-        [_contentScrollView setDirectionalLockEnabled:YES];
-        
-        [_contentScrollView setDelegate:self];
-//        [_contentScrollView setShowsHorizontalScrollIndicator:NO];
-//        [_contentScrollView setShowsVerticalScrollIndicator:NO];
-        [_contentScrollView setFrame:CGRectMake(0, CGRectGetMaxY(self.slideTabView.frame), CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMaxY(self.slideTabView.frame))];
-        [_contentScrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-    }
-    return _contentScrollView;
+- (void)configureContentScrollView {
+    _contentScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    [self.contentScrollView setScrollEnabled:YES];
+    [self.contentScrollView setPagingEnabled:YES];
+    [self.contentScrollView setDirectionalLockEnabled:YES];
+    
+    [self.contentScrollView setDelegate:self];
+    [self.contentScrollView setShowsHorizontalScrollIndicator:NO];
+    [self.contentScrollView setShowsVerticalScrollIndicator:NO];
+    [self.contentScrollView setFrame:CGRectMake(0, CGRectGetMaxY(self.slideTabView.frame), CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMaxY(self.slideTabView.frame))];
+    [self.contentScrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 }
 
 #pragma mark - life cycle
