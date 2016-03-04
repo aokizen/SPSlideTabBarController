@@ -25,7 +25,6 @@
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
     HomeViewController *homeViewController = [[HomeViewController alloc] initWithDefaultViewControllers];
-    [homeViewController setTitle:@"homeViewController"];
     UINavigationController *homeNavController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
     homeNavController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"navController" image:nil tag:0];
     

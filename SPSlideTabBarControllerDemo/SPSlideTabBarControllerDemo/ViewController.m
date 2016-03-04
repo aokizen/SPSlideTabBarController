@@ -10,4 +10,10 @@
 
 @implementation ViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self.view setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1]];
+}
+
 @end

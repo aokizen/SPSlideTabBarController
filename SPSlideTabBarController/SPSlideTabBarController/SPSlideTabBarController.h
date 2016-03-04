@@ -22,9 +22,20 @@
 - (nonnull instancetype)initWithViewController:(nonnull NSArray <UIViewController *> *)viewControllers;
 - (nonnull instancetype)initWithViewController:(nonnull NSArray <UIViewController *> *)viewControllers initTabIndex:(NSUInteger)initTabIndex;
 
-- (void)selectTabIndex:(NSUInteger)tabIndex animated:(BOOL)animated;
+@end
+
+@interface SPSlideTabBarController (ViewControllers)
+
 - (void)addViewController:(nonnull UIViewController *) viewController;
 - (void)addViewController:(nonnull UIViewController *) viewController atIndex:(NSUInteger)tabIndex;
+
+@end
+
+@interface SPSlideTabBarController (SPSlideTabBar)
+
+- (void)configureSlideTabView;
+
+- (void)selectTabIndex:(NSUInteger)tabIndex animated:(BOOL)animated;
 
 #pragma mark - did scroll
 

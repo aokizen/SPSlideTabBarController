@@ -10,6 +10,11 @@
 
 @interface HomeViewController : SPSlideTabBarController
 
+@property (assign, nonatomic) BOOL sizingTabBar;
+
 - (instancetype)initWithDefaultViewControllers;
+- (instancetype)initWithDefaultViewControllersAndInitialIndex:(NSUInteger)initialIndex;
+- (instancetype)initWithDefaultViewControllersAndSizingTabBar:(BOOL)sizingTabBar;
+- (instancetype)initWithDefaultViewControllersAndSizingTabBar:(BOOL)sizingTabBar initialIndex:(NSUInteger)initialIndex;
 
 @end

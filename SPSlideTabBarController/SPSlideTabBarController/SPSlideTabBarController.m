@@ -38,11 +38,100 @@
 
 @property (assign, nonatomic) NSUInteger initTabIndex;
 
+- (void)resizeScrollViewContentSizeWithScrollBoundsSize:(CGSize)size;
+
 @end
 
-@implementation SPSlideTabBarController
+@implementation SPSlideTabBarController (ViewControllers)
 
-@synthesize contentScrollView = _contentScrollView;
+- (void)addViewController:(nonnull UIViewController *)viewController {
+    [self addViewController:viewController atIndex:self.viewControllers.count];
+}
+
+- (void)addViewController:(nonnull UIViewController *)viewController atIndex:(NSUInteger)tabIndex {
+    if ([self isViewLoaded]) {
+        
+    }
+    else {
+        NSMutableArray <UIViewController *> *viewControllers = [NSMutableArray arrayWithArray:self.viewControllers];
+        [viewControllers insertObject:viewController atIndex:tabIndex];
+        self.viewControllers = viewControllers;
+    }
+}
+
+
+- (void)childViewControllerAtIndex:(NSUInteger)index willAppear:(BOOL)animated {
+    if (index < self.viewControllers.count) {
+        UIViewController *viewController = [self.viewControllers objectAtIndex:index];
+        [viewController beginAppearanceTransition:YES animated:animated];
+    }
+}
+
+- (void)childViewControllerAtIndex:(NSUInteger)index didAppear:(BOOL)animated {
+    if (index < self.viewControllers.count) {
+        UIViewController *viewController = [self.viewControllers objectAtIndex:index];
+        [viewController endAppearanceTransition];
+    }
+}
+
+- (void)childViewControllerAtIndex:(NSUInteger)index willDisappear:(BOOL)animated {
+    if (index < self.viewControllers.count) {
+        UIViewController *viewController = [self.viewControllers objectAtIndex:index];
+        if ([self.childViewControllers containsObject:viewController]) {
+            [viewController beginAppearanceTransition:NO animated:animated];
+        }
+    }
+}
+
+- (void)childViewControllerAtIndex:(NSUInteger)index didDisappear:(BOOL)animated {
+    if (index < self.viewControllers.count) {
+        UIViewController *viewController = [self.viewControllers objectAtIndex:index];
+        if ([self.childViewControllers containsObject:viewController]) {
+            [viewController endAppearanceTransition];
+        }
+    }
+}
+
+#pragma mark - child controller
+
+- (void)makeViewControllerVisibleAtIndex:(NSUInteger)index {
+    
+    if (index >= self.viewControllers.count) {
+        return;
+    }
+    
+    NSUInteger currentIndex = self.selectedTabIndex;
+    
+    if (currentIndex != index) {
+        [self childViewControllerAtIndex:currentIndex willDisappear:NO];
+    }
+    [self childViewControllerAtIndex:index willAppear:NO];
+    
+    UIViewController *viewController = [self.viewControllers objectAtIndex:index];
+    if (![self.childViewControllers containsObject:viewController]) {
+        [self addViewControllerToContainer:viewController];
+        [self resizeScrollViewContentSizeWithScrollBoundsSize:self.contentScrollView.bounds.size];
+    }
+    
+    if (currentIndex != index) {
+        [self childViewControllerAtIndex:currentIndex didDisappear:NO];
+    }
+    [self childViewControllerAtIndex:index didAppear:NO];
+}
+
+- (void)addViewControllerToContainer:(UIViewController *)viewController {
+    
+    [viewController willMoveToParentViewController:self];
+    [self addChildViewController:viewController];
+    [viewController.view setFrame:self.contentScrollView.bounds];
+    [self.contentScrollView addSubview:viewController.view];
+    [viewController didMoveToParentViewController:self];
+}
+
+@end
+
+
+@implementation SPSlideTabBarController
 
 #pragma mark - initialize 
 
@@ -75,38 +164,6 @@
     return self;
 }
 
-#pragma mark - public
-
-- (void)addViewController:(nonnull UIViewController *)viewController {
-    [self addViewController:viewController atIndex:self.viewControllers.count];
-}
-
-- (void)addViewController:(nonnull UIViewController *)viewController atIndex:(NSUInteger)tabIndex {
-    if ([self isViewLoaded]) {
-        
-    }
-    else {
-        NSMutableArray <UIViewController *> *viewControllers = [NSMutableArray arrayWithArray:self.viewControllers];
-        [viewControllers insertObject:viewController atIndex:tabIndex];
-        self.viewControllers = viewControllers;
-    }
-}
-
-- (void)selectTabIndex:(NSUInteger)tabIndex animated:(BOOL)animated {
-    [self.slideTabView selectTabAtIndex:tabIndex];
-    _selectedTabIndex = tabIndex;
-    [self.contentScrollView setContentOffset:CGPointMake(CGRectGetWidth(self.contentScrollView.bounds) * tabIndex, 0) animated:animated];
-}
-
-#pragma mark - did scroll
-
-/**
- for override
- */
-- (void)didScrollToTabIndex:(NSUInteger)tabIndex {
-    
-}
-
 #pragma mark - subviews
 
 - (void)configureSubviews {
@@ -122,19 +179,6 @@
     
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
-}
-
-- (void)configureSlideTabView {
-    
-    NSMutableArray <SPSlideTabBarItem *> *slideTabBarItems = [NSMutableArray array];
-    [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger index, BOOL *stop) {
-        [slideTabBarItems addObject:viewController.slideTabBarItem];
-    }];
-    
-    _slideTabView = [[SPFixedSlideTabBar alloc] initWithTabBarItems:slideTabBarItems];;
-    [self.slideTabView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), self.slideTabView.intrinsicContentSize.height)];
-    [self.slideTabView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth];
-    [((SPFixedSlideTabBar *)self.slideTabView) setDelegate:self];
 }
 
 - (void)configureContentScrollView {
@@ -178,7 +222,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -191,6 +234,8 @@
     [super viewDidAppear:animated];
     
     [self childViewControllerAtIndex:self.selectedTabIndex didAppear:animated];
+    
+    [self selectTabIndex:self.selectedTabIndex animated:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -296,76 +341,40 @@
     return NO;
 }
 
-- (void)childViewControllerAtIndex:(NSUInteger)index willAppear:(BOOL)animated {
-    if (index < self.viewControllers.count) {
-        UIViewController *viewController = [self.viewControllers objectAtIndex:index];
-        [viewController beginAppearanceTransition:YES animated:animated];
+@end
+
+@implementation SPSlideTabBarController (SPSlideTabBar)
+
+- (void)configureSlideTabView {
+    
+    if (self.slideTabView == nil) {
+        NSMutableArray <SPSlideTabBarItem *> *slideTabBarItems = [NSMutableArray array];
+        [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger index, BOOL *stop) {
+            [slideTabBarItems addObject:viewController.slideTabBarItem];
+        }];
+        self.slideTabView = [[SPFixedSlideTabBar alloc] initWithTabBarItems:slideTabBarItems];
     }
+    [self.slideTabView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), self.slideTabView.intrinsicContentSize.height)];
+    [self.slideTabView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth];
+    [((SPFixedSlideTabBar *)self.slideTabView) setDelegate:self];
 }
 
-- (void)childViewControllerAtIndex:(NSUInteger)index didAppear:(BOOL)animated {
-    if (index < self.viewControllers.count) {
-        UIViewController *viewController = [self.viewControllers objectAtIndex:index];
-        [viewController endAppearanceTransition];
-    }
+- (void)selectTabIndex:(NSUInteger)tabIndex animated:(BOOL)animated {
+    [self.slideTabView selectTabAtIndex:tabIndex];
+    _selectedTabIndex = tabIndex;
+    [self.contentScrollView setContentOffset:CGPointMake(CGRectGetWidth(self.contentScrollView.bounds) * tabIndex, 0) animated:animated];
 }
 
-- (void)childViewControllerAtIndex:(NSUInteger)index willDisappear:(BOOL)animated {
-    if (index < self.viewControllers.count) {
-        UIViewController *viewController = [self.viewControllers objectAtIndex:index];
-        if ([self.childViewControllers containsObject:viewController]) {
-            [viewController beginAppearanceTransition:NO animated:animated];
-        }
-    }
-}
+#pragma mark - did scroll
 
-- (void)childViewControllerAtIndex:(NSUInteger)index didDisappear:(BOOL)animated {
-    if (index < self.viewControllers.count) {
-        UIViewController *viewController = [self.viewControllers objectAtIndex:index];
-        if ([self.childViewControllers containsObject:viewController]) {
-            [viewController endAppearanceTransition];
-        }
-    }
-}
-
-#pragma mark - child controller
-
-- (void)makeViewControllerVisibleAtIndex:(NSUInteger)index {
+/**
+ for override
+ */
+- (void)didScrollToTabIndex:(NSUInteger)tabIndex {
     
-    if (index >= self.viewControllers.count) {
-        return;
-    }
-    
-    NSUInteger currentIndex = self.selectedTabIndex;
-    
-    if (currentIndex != index) {
-        [self childViewControllerAtIndex:currentIndex willDisappear:NO];
-    }
-    [self childViewControllerAtIndex:index willAppear:NO];
-    
-    UIViewController *viewController = [self.viewControllers objectAtIndex:index];
-    if (![self.childViewControllers containsObject:viewController]) {
-        [self addViewControllerToContainer:viewController];
-        [self resizeScrollViewContentSizeWithScrollBoundsSize:self.contentScrollView.bounds.size];
-    }
-    
-    if (currentIndex != index) {
-        [self childViewControllerAtIndex:currentIndex didDisappear:NO];
-    }
-    [self childViewControllerAtIndex:index didAppear:NO];
-}
-
-- (void)addViewControllerToContainer:(UIViewController *)viewController {
-
-    [viewController willMoveToParentViewController:self];
-    [self addChildViewController:viewController];
-    [viewController.view setFrame:self.contentScrollView.bounds];
-    [self.contentScrollView addSubview:viewController.view];
-    [viewController didMoveToParentViewController:self];
 }
 
 @end
-
 
 #import <objc/runtime.h>
 #import "SPSlideTabBarItem.h"

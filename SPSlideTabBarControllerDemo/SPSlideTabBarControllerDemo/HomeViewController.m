@@ -11,6 +11,9 @@
 #import "TableViewController.h"
 #import "CollectionViewController.h"
 #import "ScrollViewController.h"
+#import "ViewController.h"
+
+#import "SPSlideTabBar.h"
 
 @interface HomeViewController ()
 
@@ -19,6 +22,24 @@
 @implementation HomeViewController
 
 - (instancetype)initWithDefaultViewControllers {
+    self = [self initWithDefaultViewControllersAndInitialIndex:0];
+    if (self) { }
+    return self;
+}
+
+- (instancetype)initWithDefaultViewControllersAndInitialIndex:(NSUInteger)initialIndex {
+    self = [self initWithDefaultViewControllersAndSizingTabBar:NO initialIndex:initialIndex];
+    if (self) { }
+    return self;
+}
+
+- (instancetype)initWithDefaultViewControllersAndSizingTabBar:(BOOL)sizingTabBar {
+    self = [self initWithDefaultViewControllersAndSizingTabBar:sizingTabBar initialIndex:0];
+    if (self) { }
+    return self;
+}
+
+- (instancetype)initWithDefaultViewControllersAndSizingTabBar:(BOOL)sizingTabBar initialIndex:(NSUInteger)initialIndex {
     
     TableViewController *tableViewController = [[TableViewController alloc] init];
     [tableViewController setTitle:@"table"];
@@ -29,14 +50,16 @@
     ScrollViewController *scrollViewController = [[ScrollViewController alloc] init];
     [scrollViewController setTitle:@"scroll"];
     
-    
-    UIViewController *viewController = [[UIViewController alloc] init];
+    ViewController *viewController = [[ViewController alloc] init];
     [viewController setTitle:@"general"];
     
-    self = [self initWithViewController:@[tableViewController, collectionViewController, scrollViewController, viewController]];
+    self = [self initWithViewController:@[tableViewController, collectionViewController, scrollViewController, viewController] initTabIndex:initialIndex];
+    
     if (self) {
+        _sizingTabBar = sizingTabBar;
     }
     return self;
+    
 }
 
 - (void)viewDidLoad {
@@ -44,30 +67,35 @@
     // Do any additional setup after loading the view.
 
     [self.slideTabView setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1]];
-    
-    [self.viewControllers.firstObject.view setBackgroundColor:[UIColor yellowColor]];
-    [[self.viewControllers objectAtIndex:1].view setBackgroundColor:[UIColor orangeColor]];
-    [[self.viewControllers objectAtIndex:2].view setBackgroundColor:[UIColor whiteColor]];
-    [[self.viewControllers lastObject].view setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1]];
+    [self setTitle:@"homeViewController"];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)configureSlideTabView {
+    if (_sizingTabBar) {
+        
+        NSMutableArray <SPSlideTabBarItem *> *slideTabBarItems = [NSMutableArray array];
+        [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger index, BOOL *stop) {
+            [slideTabBarItems addObject:viewController.slideTabBarItem];
+        }];
+        
+        self.slideTabView = [[SPSizingSlideTabBar alloc] initWithTabBarItems:slideTabBarItems];
+    }
+
+    [super configureSlideTabView];
+
 }
 
 - (BOOL)hidesBottomBarWhenPushed {
-    return NO;
+    if (self.navigationController == nil) {
+        return NO;
+    }
+    
+    if (self.navigationController.viewControllers.firstObject == self) {
+        return NO;
+    }
+    else {
+        return YES;
+    }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

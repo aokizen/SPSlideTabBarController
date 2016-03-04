@@ -15,6 +15,7 @@ static NSString *collectionViewCellIdentifier = @"collectionViewCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.view setBackgroundColor:[UIColor orangeColor]];
     [self.collectionView setBackgroundColor:[UIColor clearColor]];
     
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionViewLayout;

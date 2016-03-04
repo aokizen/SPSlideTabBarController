@@ -13,6 +13,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.view setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.2]];
+    
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [self.scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     [self.view addSubview:self.scrollView];
