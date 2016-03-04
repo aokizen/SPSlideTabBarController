@@ -15,7 +15,9 @@
 @required
 - (instancetype)initWithTabBarItems:(NSArray <SPSlideTabBarItem *> *)tabBarItems;
 
+- (void)insertTabBarItem:(SPSlideTabBarItem *)item atIndex:(NSUInteger)index;
 - (void)setSlideTabBarItem:(SPSlideTabBarItem *)slideTabBarItem atIndex:(NSUInteger)index;
+
 - (NSArray <SPSlideTabBarItem *> *)slideTabBarItems;
 - (SPSlideTabBarItem *)slideTabBarItemAtIndex:(NSUInteger)index;
 

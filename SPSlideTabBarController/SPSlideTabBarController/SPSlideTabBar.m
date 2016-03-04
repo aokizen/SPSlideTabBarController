@@ -46,7 +46,7 @@
     [self.scrollView setShowsVerticalScrollIndicator:NO];
     [self.scrollView setScrollEnabled:NO];
     
-    [self initializeTabBarItemViews];
+    [self resetTabBarItemViews];
     
     [self bringSubviewToFront:separatorLine];
     
@@ -62,21 +62,28 @@
     }
 }
 
-- (void)initializeTabBarItemViews {
+- (void)resetTabBarItemViews {
     
     [self.slideTabBarItems enumerateObjectsUsingBlock:^(SPSlideTabBarItem *item, NSUInteger index, BOOL *stop) {
         
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        NSUInteger tag = index + 1000;
+        
+        UIButton *button = (UIButton *)[self.scrollView viewWithTag:tag];
+        if (button == nil) {
+            button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button setTag:tag];
+            [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+            [self.scrollView addSubview:button];
+        }
+        
         if (item.attibutedTitle) {
             [button setAttributedTitle:item.attibutedTitle forState:UIControlStateNormal];
         }
         else {
             [button setTitle:item.title forState:UIControlStateNormal];
         }
-        [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.scrollView addSubview:button];
-        
-        [button setSelected:(index == 0)];
+
+        [button setSelected:(index == self.selectedTabIndex)];
     }];
     
     [self setNeedsLayout];
@@ -127,8 +134,22 @@
 
 #pragma mark - SPSlideTabBarProtocol
 
+- (void)insertTabBarItem:(SPSlideTabBarItem *)item atIndex:(NSUInteger)index {
+    NSMutableArray <SPSlideTabBarItem *> *slideTabBarItems = [NSMutableArray arrayWithArray:[self slideTabBarItems]];
+    if (index <= slideTabBarItems.count) {
+        [slideTabBarItems insertObject:item atIndex:index];
+        [self setSlideTabBarItems:slideTabBarItems];
+        [self resetTabBarItemViews];
+    }
+}
+
 - (void)setSlideTabBarItem:(SPSlideTabBarItem *)slideTabBarItem atIndex:(NSUInteger)index {
-    
+    NSMutableArray <SPSlideTabBarItem *> *slideTabBarItems = [NSMutableArray arrayWithArray:[self slideTabBarItems]];
+    if (index < slideTabBarItems.count) {
+        [slideTabBarItems replaceObjectAtIndex:index withObject:slideTabBarItem];
+        [self setSlideTabBarItems:slideTabBarItems];
+        [self resetTabBarItemViews];
+    }
 }
 
 - (NSArray<SPSlideTabBarItem *> *)slideTabBarItems {
@@ -255,10 +276,6 @@
         self.scrollView.bounces = NO;
     }
     return self;
-}
-
-- (void)initializeTabBarItemViews {
-    [super initializeTabBarItemViews];
 }
 
 - (void)resetButtonPadding {

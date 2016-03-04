@@ -20,7 +20,7 @@
 
 @property (weak, nonatomic) id<SPSlideTabBarDelegate> delegate;
 
-- (void)initializeTabBarItemViews;
+- (void)resetTabBarItemViews;
 - (void)layoutTabBarItemSubviews;
 
 
