@@ -10,9 +10,17 @@
 
 @class SPSlideTabBarItem;
 
+/**
+ 
+ `SPSlideTabBarProtocol` is a protocol that a custom slide tab bar must follow.
+ 
+ `SPSlideTabBarProtocol` 是一个 任何定制的 SlideTaBar 都需要遵循的协议
+ 
+ */
 @protocol SPSlideTabBarProtocol <NSObject>
 
 @required
+
 - (instancetype)initWithTabBarItems:(NSArray <SPSlideTabBarItem *> *)tabBarItems;
 
 - (void)insertTabBarItem:(SPSlideTabBarItem *)item atIndex:(NSUInteger)index;

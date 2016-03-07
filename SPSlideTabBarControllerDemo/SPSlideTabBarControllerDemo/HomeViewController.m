@@ -60,12 +60,6 @@
     
     if (self) {
         _sizingTabBar = sizingTabBar;
-        
-//        [[SPSlideTabBarItem appearanceWhenContainedIn:[UIView class], nil] setTextColor:[UIColor blackColor]];
-        
-        
-
-        
     }
     return self;
     
