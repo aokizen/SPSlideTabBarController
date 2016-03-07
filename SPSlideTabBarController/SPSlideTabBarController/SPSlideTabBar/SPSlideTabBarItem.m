@@ -7,6 +7,7 @@
 //
 
 #import "SPSlideTabBarItem.h"
+#import "SPAppearance.h"
 
 @implementation SPSlideTabBarItem
 
@@ -27,6 +28,31 @@
         }
     }
     return self;
+}
+
++ (instancetype)appearance {
+    return [SPAppearance appearanceForClass:self];
+}
+
+- (UIFont *)barItemTextFont {
+    if (_barItemTextFont == nil) {
+        return [UIFont systemFontOfSize:15];
+    }
+    return _barItemTextFont;
+}
+
+- (UIColor *)barItemTextColor {
+    if (_barItemTextColor == nil) {
+        return [UIColor whiteColor];
+    }
+    return _barItemTextColor;
+}
+
+- (UIColor *)barItemSelectedTextColor {
+    if (_barItemSelectedTextColor == nil) {
+        return [UIColor blackColor];
+    }
+    return _barItemSelectedTextColor;
 }
 
 @end

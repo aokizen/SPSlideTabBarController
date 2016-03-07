@@ -12,7 +12,7 @@
 
 @protocol SPSlideTabBarDelegate <NSObject>
 
-- (void)slideTabBar:(UIView <SPSlideTabBarProtocol> *)slideTabBar didSelectIndex:(NSUInteger)index;
+- (void)slideTabBar:(nonnull UIView <SPSlideTabBarProtocol> *)slideTabBar didSelectIndex:(NSUInteger)index;
 
 @end
 
@@ -22,8 +22,6 @@
 
 - (void)resetTabBarItemViews;
 - (void)layoutTabBarItemSubviews;
-
-
 
 @end
 

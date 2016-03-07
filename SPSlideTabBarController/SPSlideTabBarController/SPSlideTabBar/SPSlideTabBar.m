@@ -9,6 +9,7 @@
 #import "SPSlideTabBar.h"
 
 #import "SPSlideTabBarItem.h"
+#import "SPAppearance.h"
 
 @interface SPFixedSlideTabBar () {
     NSUInteger _selectedTabIndex;
@@ -66,6 +67,8 @@
     
     [self.slideTabBarItems enumerateObjectsUsingBlock:^(SPSlideTabBarItem *item, NSUInteger index, BOOL *stop) {
         
+        [[SPAppearance appearanceForClass:[item class]] startForwarding:item];
+        
         NSUInteger tag = index + 1000;
         
         UIButton *button = (UIButton *)[self.scrollView viewWithTag:tag];
@@ -81,6 +84,11 @@
         }
         else {
             [button setTitle:item.title forState:UIControlStateNormal];
+            [button.titleLabel setFont:item.barItemTextFont];
+            [button setTitleColor:item.barItemTextColor forState:UIControlStateNormal];
+            [button setTitleColor:item.barItemSelectedTextColor forState:UIControlStateHighlighted];
+            [button setTitleColor:item.barItemSelectedTextColor forState:UIControlStateSelected];
+            [button setTitleColor:item.barItemSelectedTextColor forState:UIControlStateSelected | UIControlStateHighlighted];
         }
 
         [button setSelected:(index == self.selectedTabIndex)];

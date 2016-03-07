@@ -14,6 +14,7 @@
 #import "ViewController.h"
 
 #import "SPSlideTabBar.h"
+#import "SPSlideTabBarItem.h"
 
 @interface HomeViewController ()
 
@@ -41,6 +42,8 @@
 
 - (instancetype)initWithDefaultViewControllersAndSizingTabBar:(BOOL)sizingTabBar initialIndex:(NSUInteger)initialIndex {
     
+    [[SPSlideTabBarItem appearance] setBarItemSelectedTextColor:[UIColor blueColor]];
+    
     TableViewController *tableViewController = [[TableViewController alloc] init];
     [tableViewController setTitle:@"table"];
     
@@ -57,6 +60,12 @@
     
     if (self) {
         _sizingTabBar = sizingTabBar;
+        
+//        [[SPSlideTabBarItem appearanceWhenContainedIn:[UIView class], nil] setTextColor:[UIColor blackColor]];
+        
+        
+
+        
     }
     return self;
     
