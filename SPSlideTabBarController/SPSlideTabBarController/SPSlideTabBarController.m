@@ -44,18 +44,36 @@
 
 @implementation SPSlideTabBarController (ViewControllers)
 
+/**
+ * add a viewController to the slideTabBarController
+ *
+ * 为当前的 slideTabBarController 增加一个 viewController
+ *
+ * @discussion the viewController and the tab bar item will be added at the last index by default.
+ * @discussion 待加入的 viewController 和 tab bar item 会被默认加到最后一个
+ */
 - (void)addViewController:(nonnull UIViewController *)viewController {
     [self addViewController:viewController atIndex:self.viewControllers.count];
 }
 
+/**
+ * add a viewController to the slideTabBarController at the index
+ *
+ * 为当前的 slideTabBarController 增加一个 viewController，添加到 index 的位置
+ */
 - (void)addViewController:(nonnull UIViewController *)viewController atIndex:(NSUInteger)tabIndex {
     
+    NSUInteger index = tabIndex;
+    if (index > self.viewControllers.count) {
+        index = self.viewControllers.count;
+    }
+    
     NSMutableArray <UIViewController *> *viewControllers = [NSMutableArray arrayWithArray:self.viewControllers];
-    [viewControllers insertObject:viewController atIndex:tabIndex];
+    [viewControllers insertObject:viewController atIndex:index];
     self.viewControllers = viewControllers;
     
     if (self.slideTabView != nil) {
-        [self.slideTabView insertTabBarItem:viewController.slideTabBarItem atIndex:tabIndex];
+        [self.slideTabView insertTabBarItem:viewController.slideTabBarItem atIndex:index];
     }
     
     if ([self isViewLoaded]) {
@@ -97,6 +115,14 @@
 
 #pragma mark - child controller
 
+/**
+ * make the view controller at index visible
+ *
+ * 让一个在 index 位置上的 viewController 显示出来
+ *
+ * @discussion make the previous viewController disappear and the current viewCotnroller appear.
+ * @discussion 让之前的 viewController disappear, 并且让当前的 viewController appear.
+ */
 - (void)_makeViewControllerVisibleAtIndex:(NSUInteger)index {
     
     if (index >= self.viewControllers.count) {
@@ -122,6 +148,11 @@
     [self _childViewControllerAtIndex:index didAppear:NO];
 }
 
+/**
+ * add a viewController to the container in the SPSlideTabBarController
+ *
+ * 将一个 viewController 添加到 SPSlideTabBarController 的容器内
+ */
 - (void)_addViewControllerToContainer:(UIViewController *)viewController {
     
     [viewController willMoveToParentViewController:self];
@@ -146,6 +177,12 @@
     return self;
 }
 
+/**
+ * 初始化方法
+ *
+ * @param viewControllers all viewControllers for all scroll page
+ * @param viewControllers 所有滑动页面的 viewController
+ */
 - (nonnull instancetype)initWithViewController:(nonnull NSArray<UIViewController *> *)viewControllers {
     self = [self init];
     if (self) {
@@ -156,6 +193,15 @@
     return self;
 }
 
+/**
+ * 初始化方法
+ *
+ * @param viewControllers all viewControllers for all scroll page
+ * @param viewControllers 所有滑动页面的 viewController
+ *
+ * @param initTabIndex the selected tab index at the initialized time
+ * @param initTabIndex 初始化的时候选中的 tab index
+ */
 - (nonnull instancetype)initWithViewController:(nonnull NSArray <UIViewController *> *)viewControllers initTabIndex:(NSUInteger)initTabIndex {
     self = [self initWithViewController:viewControllers];
     if (self) {
@@ -169,6 +215,11 @@
 
 #pragma mark - subviews
 
+/**
+ * initialize and configure all subviews
+ *
+ * 初始化和配置所有的子视图
+ */
 - (void)_configureSubviews {
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
@@ -184,6 +235,11 @@
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
 }
 
+/**
+ * intialize and configure the content scrollView
+ *
+ * 初始化和配置内容滑动界面
+ */
 - (void)_configureContentScrollView {
     _contentScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [self.contentScrollView setScrollEnabled:YES];
@@ -311,6 +367,11 @@
 
 #pragma mark - SPSlideTabBarDelegate
 
+/**
+ * tell the delegate the the slide tab bar did select the tab of `index`.
+ *
+ * slide tab bar 通知代理已经选择了某一个 index 的 tab
+ */
 - (void)slideTabBar:(UIView<SPSlideTabBarProtocol> *)slideTabBar didSelectIndex:(NSUInteger)index {
     
     [self.contentScrollView sp_scrollToPage:index];
@@ -326,6 +387,11 @@
 
 #pragma mark - size
 
+/**
+ * resize scroll view content size and the page view controller frame with the scroll bounds size
+ *
+ * 根据 scrollView 的 bounds size 来重新设置 scrollView 的 contentSize 和所有 viewController 的 view frame
+ */
 - (void)_resizeScrollViewContentSizeWithScrollBoundsSize:(CGSize)size {
     
     self.contentScrollView.contentSize = CGSizeMake(size.width * self.viewControllers.count, size.height);
@@ -348,6 +414,11 @@
 
 @implementation SPSlideTabBarController (SPSlideTabBar)
 
+/**
+ * initialize the slide tab view
+ *
+ * 初始化 slide tab bar 视图
+ */
 - (void)configureSlideTabView {
     
     if (self.slideTabView == nil) {
@@ -362,6 +433,11 @@
     [((SPFixedSlideTabBar *)self.slideTabView) setDelegate:self];
 }
 
+/**
+ * call the controller to select tab index
+ *
+ * 调用这个方法来选择某一个 tab
+ */
 - (void)selectTabIndex:(NSUInteger)tabIndex animated:(BOOL)animated {
     [self.slideTabView selectTabAtIndex:tabIndex];
     _selectedTabIndex = tabIndex;
@@ -371,7 +447,12 @@
 #pragma mark - did scroll
 
 /**
- for override
+ * notify that the controller did scroll to tab of `index`
+ *
+ * 用于标识 controller 以及滑动到某一个 index 的 tab
+ *
+ * @discussion no concrete implementation. this method is only for override.
+ * @discussion 没有具体的实现，这个方法仅为继承提供的
  */
 - (void)didScrollToTabIndex:(NSUInteger)tabIndex {
     
@@ -386,6 +467,11 @@
 
 @dynamic slideTabBarItem;
 
+/**
+ * get the slide tab bar item for a viewController
+ *
+ * 获取一个 viewController 的 slide tab bar item
+ */
 - (SPSlideTabBarItem *)slideTabBarItem {
     SPSlideTabBarItem *tabBarItem = objc_getAssociatedObject(self, @selector(slideTabBarItem));
     if (tabBarItem == nil) {
@@ -398,6 +484,11 @@
     objc_setAssociatedObject(self, @selector(setSlideTabBarItem:), slideTabBarItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+/**
+ * get the slideTabBarController for a viewController; if none, return nil
+ *
+ * 获取一个 viewController 的 slideTabBarController； 如果不存在，则返回nil
+ */
 - (SPSlideTabBarController *)slideTabBarController {
     UIViewController *parentViewController = self.parentViewController;
     if (parentViewController && [parentViewController isKindOfClass:[SPSlideTabBarController class]]) {

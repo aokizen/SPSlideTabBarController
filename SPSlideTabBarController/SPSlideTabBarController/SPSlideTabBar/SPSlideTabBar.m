@@ -11,6 +11,11 @@
 #import "SPSlideTabBarItem.h"
 #import "SPAppearance.h"
 
+/**
+ * a custom slide tab bar whose tabs' width is fixed which is depend on the slide tab bar's width.
+ *
+ * 一个定制的 slide tab bar. 所有 tab 都是固定宽度的，具体宽度是多少是根据 tab bar 的宽度来均分计算的。
+ */
 @interface SPFixedSlideTabBar () {
     NSUInteger _selectedTabIndex;
 }
@@ -24,6 +29,11 @@
 
 @implementation SPFixedSlideTabBar
 
+/**
+ * an required method to initialize a tab bar with the array of `SPSlideTabBarItem`.
+ *
+ * 通过一个 `SPSlideTabBarItem` 数组的初始化方法
+ */
 - (instancetype)initWithTabBarItems:(NSArray<SPSlideTabBarItem *> *)tabBarItems {
     self = [self init];
     if (self) {
@@ -63,6 +73,12 @@
     }
 }
 
+
+/**
+ * reset all tab bar item views
+ *
+ * 重新生成所有的 tab bar item 视图
+ */
 - (void)resetTabBarItemViews {
     
     [self.slideTabBarItems enumerateObjectsUsingBlock:^(SPSlideTabBarItem *item, NSUInteger index, BOOL *stop) {
@@ -114,6 +130,11 @@
     }
 }
 
+/**
+ * layout all tab bar item subviews
+ *
+ * 为所有的 tab bar item 子视图布局
+ */
 - (void)layoutTabBarItemSubviews {
     
     NSArray <UIButton *> *buttons = [self tabBarButtonSubviews];
@@ -142,6 +163,11 @@
 
 #pragma mark - SPSlideTabBarProtocol
 
+/**
+ * insert a `SPSlideTabBarItem` at an index
+ *
+ * 在 index 的位置插入一个 `SPSlideTabBarItem`
+ */
 - (void)insertTabBarItem:(SPSlideTabBarItem *)item atIndex:(NSUInteger)index {
     NSMutableArray <SPSlideTabBarItem *> *slideTabBarItems = [NSMutableArray arrayWithArray:[self slideTabBarItems]];
     if (index <= slideTabBarItems.count) {
@@ -151,6 +177,11 @@
     }
 }
 
+/**
+ * reset the `SPSlideTabBarItem` at the index
+ *
+ * 重置某一个位置 index 的 `SPSlideTabBarItem`
+ */
 - (void)setSlideTabBarItem:(SPSlideTabBarItem *)slideTabBarItem atIndex:(NSUInteger)index {
     NSMutableArray <SPSlideTabBarItem *> *slideTabBarItems = [NSMutableArray arrayWithArray:[self slideTabBarItems]];
     if (index < slideTabBarItems.count) {
@@ -160,10 +191,24 @@
     }
 }
 
+
+/**
+ * get all existing `SPSlideTabBarItem`s.
+ *
+ * 获取所有的 `SPSlideTabBarItems`.
+ *
+ * @return the array of `SPSlideTabBarItem`
+ * @retuen 返回 `SPSlideTabBarItem` 的数组
+ */
 - (NSArray<SPSlideTabBarItem *> *)slideTabBarItems {
     return _slideTabBarItems;
 }
 
+/**
+ * get the `SPSlideTabBarItem` at the inex.
+ *
+ * 获取具体 index 位置的 `SPSlideTabBarItem`
+ */
 - (SPSlideTabBarItem *)slideTabBarItemAtIndex:(NSUInteger)index {
     if (index < _slideTabBarItems.count) {
         return [_slideTabBarItems objectAtIndex:index];
@@ -171,6 +216,12 @@
     return nil;
 }
 
+
+/**
+ * select the tab of index
+ *
+ * 选择一个 index 位置的 tab
+ */
 - (void)selectTabAtIndex:(NSUInteger)index {
     NSUInteger buttonIndex = 0;
     NSArray <UIButton *> *buttons = self.tabBarButtonSubviews;
@@ -182,10 +233,20 @@
     _selectedTabIndex = index;
 }
 
+/**
+ * the current selected tab index
+ *
+ * 当前选中的 tab index 位置
+ */
 - (NSUInteger)selectedTabIndex {
     return _selectedTabIndex;
 }
 
+/**
+ * scroll indicator to the selected index
+ *
+ * 将 indicator 滑动到要选中的 index
+ */
 - (void)scrollIndicatorToIndex:(NSUInteger)selectedIndex {
     if (selectedIndex < self.tabBarButtonSubviews.count) {
         UIButton *button = [self.tabBarButtonSubviews objectAtIndex:selectedIndex];
@@ -207,6 +268,12 @@
     }
 }
 
+
+/**
+ * fix indicator position with the content srollView's content offset.
+ *
+ * 根据内容滑动界面的滑动 offset 来修正 indicator 的位置
+ */
 - (void)fixIndicatorWithScrollOffset:(CGFloat)offset {
     NSArray <UIButton *> *buttons = self.tabBarButtonSubviews;
     NSUInteger selectedIndex = self.selectedTabIndex;
@@ -275,8 +342,19 @@
 
 @end
 
+
+/**
+ * a custom slide tab bar whose tabs' width is depend on the content size of the tab.
+ *
+ * 一个定制的 slide tab bar. 所有 tab 的宽度都是根据 tab 的内容来自适应的。
+ */
 @implementation SPSizingSlideTabBar
 
+/**
+ * an required method to initialize a tab bar with the array of `SPSlideTabBarItem`.
+ *
+ * 通过一个 `SPSlideTabBarItem` 数组的初始化方法
+ */
 - (instancetype)initWithTabBarItems:(NSArray<SPSlideTabBarItem *> *)tabBarItems {
     self = [super initWithTabBarItems:tabBarItems];
     if (self) {
@@ -286,6 +364,11 @@
     return self;
 }
 
+/**
+ * reset all tab bar item views
+ *
+ * 重新生成所有的 tab bar item 视图
+ */
 - (void)resetButtonPadding {
     NSArray <UIButton *> *buttons = self.tabBarButtonSubviews;
     CGFloat padding = ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 16 : 8);
@@ -296,6 +379,12 @@
     [self setNeedsLayout];
 }
 
+
+/**
+ * layout all tab bar item subviews
+ *
+ * 为所有的 tab bar item 子视图布局
+ */
 - (void)layoutTabBarItemSubviews {
     NSArray <UIButton *> *buttons = self.tabBarButtonSubviews;
     CGFloat padding = ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 16 : 8);
@@ -321,6 +410,14 @@
     [self.scrollView setContentSize:CGSizeMake(CGRectGetMaxX(lastButton.frame) + padding, CGRectGetHeight(self.frame))];
 }
 
+
+#pragma mark - SPSlideTabBarProtocol
+
+/**
+ * select the tab of index
+ *
+ * 选择一个 index 位置的 tab
+ */
 - (void)selectTabAtIndex:(NSUInteger)index {
     [super selectTabAtIndex:index];
     

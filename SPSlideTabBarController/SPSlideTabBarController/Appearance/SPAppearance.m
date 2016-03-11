@@ -20,13 +20,11 @@ static NSMutableDictionary *dictionaryOfClasses = nil;
 @implementation SPAppearance
 
 /**
- 
- Get a `SPAppearance` instance for the concrete `Class`.
- 
- 为一个具体的 类 获取 `SPAppearance` 的一个 实例。
- 
- @return the same object instance for each different class
- 
+ * Get a `SPAppearance` instance for the concrete `Class`.
+ *
+ * 为一个具体的 类 获取 `SPAppearance` 的一个 实例。
+ *
+ * @return the same object instance for each different class
  */
 + (instancetype)appearanceForClass:(Class)thisClass {
     
@@ -85,13 +83,12 @@ static NSMutableDictionary *dictionaryOfClasses = nil;
 }
 
 /**
- 
- start forward the appearance setting for the sender.
- 
- 开始为 sender 转发设置。
- 
- @param sender the instance the appearance of which is need to be forwarded.
- @param sender 具体需要转发的实例
+ * start forward the appearance setting for the sender.
+ *
+ * 开始为 sender 转发设置。
+ *
+ * @param sender the instance the appearance of which is need to be forwarded.
+ * @param sender 具体需要转发的实例
  */
 - (void)startForwarding:(id)sender {
     for (NSInvocation *invocation in self.invocations) {

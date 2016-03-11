@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370B9FF91C92A554008ADF9E /* SPAppearance.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3741FFB41C8D5AE5001E9A9E /* SPAppearance.h */; };
+		370B9FFA1C92A554008ADF9E /* SPSlideTabBarProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3741FFBC1C8D61A3001E9A9E /* SPSlideTabBarProtocol.h */; };
+		370B9FFB1C92A554008ADF9E /* SPSlideTabBar.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3741FFB81C8D61A3001E9A9E /* SPSlideTabBar.h */; };
+		370B9FFC1C92A554008ADF9E /* SPSlideTabBarItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3741FFBA1C8D61A3001E9A9E /* SPSlideTabBarItem.h */; };
 		3741FFB61C8D5AE5001E9A9E /* SPAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741FFB51C8D5AE5001E9A9E /* SPAppearance.m */; };
 		3741FFBD1C8D61A3001E9A9E /* SPSlideTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741FFB91C8D61A3001E9A9E /* SPSlideTabBar.m */; };
 		3741FFBE1C8D61A3001E9A9E /* SPSlideTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741FFBB1C8D61A3001E9A9E /* SPSlideTabBarItem.m */; };
@@ -21,6 +25,10 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				370B9FF91C92A554008ADF9E /* SPAppearance.h in CopyFiles */,
+				370B9FFA1C92A554008ADF9E /* SPSlideTabBarProtocol.h in CopyFiles */,
+				370B9FFB1C92A554008ADF9E /* SPSlideTabBar.h in CopyFiles */,
+				370B9FFC1C92A554008ADF9E /* SPSlideTabBarItem.h in CopyFiles */,
 				6F1551A11C7B0CC500B9EBBC /* SPSlideTabBarController.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
