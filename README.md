@@ -93,10 +93,5 @@ A TabBarController with top TabBar and slide content view.
 
 ## The screenshots for demo
 
-![demo]<SPSlideTabBarControllerDemo/screenshots/demo.gif>
+![demo](./SPSlideTabBarControllerDemo/screenshots/demo.gif)
 
-![1]<SPSlideTabBarControllerDemo/screenshots/1.png>
-
-![2]<SPSlideTabBarControllerDemo/screenshots/2.png>
-
-![3]<SPSlideTabBarControllerDemo/screenshots/3.png>
