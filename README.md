@@ -10,8 +10,7 @@ A TabBarController with top TabBar and slide content view.
 
   - initialize
 
-  ```Objecitve-C
-
+  ```objc
   TableViewController *tableViewController = [[TableViewController alloc] init];
   [tableViewController setTitle:@"table"];
 
@@ -29,13 +28,13 @@ A TabBarController with top TabBar and slide content view.
 
   - selected a tab
 
-  ```Objecitve-C
+  ```objc
   - (void)selectTabIndex:(NSUInteger)tabIndex animated:(BOOL)animated；
   ```
 
   - add a UIViewController
 
-  ```Objecitve-C
+  ```objc
   /**
    * add a viewController to the slideTabBarController
    *
@@ -56,10 +55,10 @@ A TabBarController with top TabBar and slide content view.
 
 2. custom a slide tab bar
 
-a easy way to define a custom slide tab bar is to define a view which respond to the protocol `SPSlideTabBarProtocol`
+  a easy way to define a custom slide tab bar is to define a view which respond to the protocol `SPSlideTabBarProtocol`
 
 3. style slide tab bar item
 
-```objc
-[[SPSlideTabBarItem appearance] setBarItemSelectedTextColor:[UIColor blueColor]];
-```
+  ```objc
+  [[SPSlideTabBarItem appearance] setBarItemSelectedTextColor:[UIColor blueColor]];
+  ```
