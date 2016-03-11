@@ -31,7 +31,11 @@
 }
 
 + (instancetype)appearance {
-    return [SPAppearance appearanceForClass:self];
+    return (SPSlideTabBarItem *)[SPAppearance appearanceForClass:self];
+}
+
++ (instancetype)appearanceWhenContainedIn:(Class<UIAppearanceContainer>)ContainerClass, ... {
+    return [self appearance];
 }
 
 - (UIFont *)barItemTextFont {
