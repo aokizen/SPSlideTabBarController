@@ -2,7 +2,7 @@
 
 A TabBarController with top TabBar and slide content view.
 
-------
+-----
 
 ## Usage
 
@@ -55,10 +55,48 @@ A TabBarController with top TabBar and slide content view.
 
 2. custom a slide tab bar
 
-  a easy way to define a custom slide tab bar is to define a view which respond to the protocol `SPSlideTabBarProtocol`
+  a easy way to define a custom slide tab bar is to define a view which follows the protocol `SPSlideTabBarProtocol`.
+
+  There are two defined custom slide tab bar already.
+
+  - `SPFixedSlideTabBar`
+
+    ```objc
+    /**
+     * a custom slide tab bar whose tabs' width is fixed which is depend on the slide tab bar's width.
+     *    
+     * 一个定制的 slide tab bar. 所有 tab 都是固定宽度的，具体宽度是多少是根据 tab bar 的宽度来均分计算的。
+     */
+    @interface SPFixedSlideTabBar : UIView <SPSlideTabBarProtocol>
+    @end
+    ```
+
+  - `SPSizingSlideTabBar`
+
+    ```objc
+    /**
+     * a custom slide tab bar whose tabs' width is depend on the content size of the tab.
+     *
+     * 一个定制的 slide tab bar. 所有 tab 的宽度都是根据 tab 的内容来自适应的。
+     */
+    @interface SPSizingSlideTabBar : SPFixedSlideTabBar
+    @end
+    ```
 
 3. style slide tab bar item
 
   ```objc
   [[SPSlideTabBarItem appearance] setBarItemSelectedTextColor:[UIColor blueColor]];
   ```
+
+-----
+
+## The screenshots for demo
+
+![demo]<./SPSlideTabBarControllerDemo/screenshots/demo.gif>
+
+![1]<./SPSlideTabBarControllerDemo/screenshots/1.png>
+
+![2]<./SPSlideTabBarControllerDemo/screenshots/2.png>
+
+![3]<./SPSlideTabBarControllerDemo/screenshots/3.png>
