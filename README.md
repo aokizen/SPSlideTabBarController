@@ -4,6 +4,12 @@ A TabBarController with top TabBar and slide content view.
 
 -----
 
+## Screenshot for Demo
+
+![demo](./SPSlideTabBarControllerDemo/screenshots/demo.gif)
+
+-----
+
 ## Usage
 
 1. SPSlideTabBarController
@@ -88,10 +94,3 @@ A TabBarController with top TabBar and slide content view.
   ```objc
   [[SPSlideTabBarItem appearance] setBarItemSelectedTextColor:[UIColor blueColor]];
   ```
-
------
-
-## The screenshots for demo
-
-![demo](./SPSlideTabBarControllerDemo/screenshots/demo.gif)
-
