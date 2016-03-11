@@ -8,23 +8,23 @@ A TabBarController with top TabBar and slide content view.
 
 1. SPSlideTabBarController
 
-  - 初始化
+  - initialize
 
   ```Objecitve-C
 
-     TableViewController *tableViewController = [[TableViewController alloc] init];
-     [tableViewController setTitle:@"table"];
+  TableViewController *tableViewController = [[TableViewController alloc] init];
+  [tableViewController setTitle:@"table"];
 
-     CollectionViewController *collectionViewController = [[CollectionViewController alloc] initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];
-     [collectionViewController setTitle:@"collection"];
+  CollectionViewController *collectionViewController = [[CollectionViewController alloc] initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];
+  [collectionViewController setTitle:@"collection"];
 
-     ScrollViewController *scrollViewController = [[ScrollViewController alloc] init];
-     [scrollViewController setTitle:@"scroll"];
+  ScrollViewController *scrollViewController = [[ScrollViewController alloc] init];
+  [scrollViewController setTitle:@"scroll"];
 
-     ViewController *viewController = [[ViewController alloc] init];
+  ViewController *viewController = [[ViewController alloc] init];
      [viewController setTitle:@"general"];
 
-     SPSlideTabBarController *slideTabBarController = [[SPSlideTabBarController alloc] initWithViewController:@[tableViewController, collectionViewController, scrollViewController, viewController] initTabIndex:2];
+  SPSlideTabBarController *slideTabBarController = [[SPSlideTabBarController alloc] initWithViewController:@[tableViewController, collectionViewController, scrollViewController, viewController] initTabIndex:2];
   ```
 
   - selected a tab
@@ -60,8 +60,6 @@ a easy way to define a custom slide tab bar is to define a view which respond to
 
 3. style slide tab bar item
 
-```Objecitve-C
-......
+```objc
 [[SPSlideTabBarItem appearance] setBarItemSelectedTextColor:[UIColor blueColor]];
-......
 ```
