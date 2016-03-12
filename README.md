@@ -119,10 +119,10 @@ Minimum iOS Target: iOS 7.0
 
   - example code
 
-  In the method `- (void)resetTabBarItemViews` in the `SPFixedSlideTabBar`, there are following code:
-
-  ```objc
-  [self.slideTabBarItems enumerateObjectsUsingBlock:^(SPSlideTabBarItem *item, NSUInteger index, BOOL *stop) {
+    In the method `- (void)resetTabBarItemViews` in the `SPFixedSlideTabBar`, there are following code:
+    
+    ```objc
+    [self.slideTabBarItems enumerateObjectsUsingBlock:^(SPSlideTabBarItem *item, NSUInteger index, BOOL *stop) {
 
         /**
          * start apply the style to the item
@@ -158,8 +158,8 @@ Minimum iOS Target: iOS 7.0
         }
 
         [button setSelected:(index == self.selectedTabIndex)];
-  }];
-  ```
+    }];
+    ```
 
 ## License
 
