@@ -115,7 +115,11 @@ Minimum iOS Target: iOS 7.0
   ```objc
   [[SPSlideTabBarItem appearance] setBarItemSelectedTextColor:[UIColor blueColor]];
   ```
-  In the method `- (void)resetTabBarItemViews;` in the `SPFixedSlideTabBar`, there are following code:
+  Then, a custom slideTabBar can call `[[SPAppearance appearanceForClass:[item class]] startForwarding:item];` for each tabBarItem to apply the style.
+
+  - example code
+
+  In the method `- (void)resetTabBarItemViews` in the `SPFixedSlideTabBar`, there are following code:
 
   ```objc
   [self.slideTabBarItems enumerateObjectsUsingBlock:^(SPSlideTabBarItem *item, NSUInteger index, BOOL *stop) {
@@ -156,8 +160,6 @@ Minimum iOS Target: iOS 7.0
         [button setSelected:(index == self.selectedTabIndex)];
   }];
   ```
-
-  So, a custom slideTabBar can call `[[SPAppearance appearanceForClass:[item class]] startForwarding:item];` for each tabBarItem to apply the style.
 
 ## License
 
