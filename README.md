@@ -82,7 +82,7 @@ Minimum iOS Target: iOS 7.0
 
 2. Custom a slide tab bar
 
-  a easy way to define a custom slide tab bar is to define a view which follows the protocol `SPSlideTabBarProtocol`.
+  a easy way to define a custom slide tab bar is to define a view which conforms to the protocol `<SPSlideTabBarProtocol>`.
 
   There are two defined custom slide tab bar already.
 
