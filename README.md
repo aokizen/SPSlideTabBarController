@@ -115,6 +115,49 @@ Minimum iOS Target: iOS 7.0
   ```objc
   [[SPSlideTabBarItem appearance] setBarItemSelectedTextColor:[UIColor blueColor]];
   ```
+  In the method `- (void)resetTabBarItemViews;` in the `SPFixedSlideTabBar`, there are following code:
+
+  ```objc
+  [self.slideTabBarItems enumerateObjectsUsingBlock:^(SPSlideTabBarItem *item, NSUInteger index, BOOL *stop) {
+
+        /**
+         * start apply the style to the item
+         */
+        [[SPAppearance appearanceForClass:[item class]] startForwarding:item];
+
+        NSUInteger tag = index + 1000;
+
+        UIButton *button = (UIButton *)[self.scrollView viewWithTag:tag];
+        if (button == nil) {
+            /**
+             * initialize the button
+             */
+            button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button setTag:tag];
+            [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+            [self.scrollView addSubview:button];
+        }
+
+        /**
+         * style the button
+         */
+        if (item.attibutedTitle) {
+            [button setAttributedTitle:item.attibutedTitle forState:UIControlStateNormal];
+        }
+        else {
+            [button setTitle:item.title forState:UIControlStateNormal];
+            [button.titleLabel setFont:item.barItemTextFont];
+            [button setTitleColor:item.barItemTextColor forState:UIControlStateNormal];
+            [button setTitleColor:item.barItemSelectedTextColor forState:UIControlStateHighlighted];
+            [button setTitleColor:item.barItemSelectedTextColor forState:UIControlStateSelected];
+            [button setTitleColor:item.barItemSelectedTextColor forState:UIControlStateSelected | UIControlStateHighlighted];
+        }
+
+        [button setSelected:(index == self.selectedTabIndex)];
+  }];
+  ```
+
+  So, a custom slideTabBar can call `[[SPAppearance appearanceForClass:[item class]] startForwarding:item];` for each tabBarItem to apply the style.
 
 ## License
 

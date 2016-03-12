@@ -83,18 +83,27 @@
     
     [self.slideTabBarItems enumerateObjectsUsingBlock:^(SPSlideTabBarItem *item, NSUInteger index, BOOL *stop) {
         
+        /**
+         * start apply the style to the item
+         */
         [[SPAppearance appearanceForClass:[item class]] startForwarding:item];
         
         NSUInteger tag = index + 1000;
         
         UIButton *button = (UIButton *)[self.scrollView viewWithTag:tag];
         if (button == nil) {
+            /**
+             * initialize the button
+             */
             button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setTag:tag];
             [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:button];
         }
         
+        /**
+         * style the button
+         */
         if (item.attibutedTitle) {
             [button setAttributedTitle:item.attibutedTitle forState:UIControlStateNormal];
         }
