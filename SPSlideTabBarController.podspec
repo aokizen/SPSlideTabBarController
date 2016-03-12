@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SPSlideTabBarController"
-  s.version      = "0.1.0"
+  s.version      = "1.0.0"
   s.summary      = "A TabBarController with top TabBar and slide content view."
 
   # This description is used to generate tags and improve search results.
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/aokizen/SPSlideTabBarController.git", :tag => "0.1.0" }
+  s.source       = { :git => "https://github.com/aokizen/SPSlideTabBarController.git", :tag => "1.0.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
