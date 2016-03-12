@@ -2,19 +2,40 @@
 
 A TabBarController with top TabBar and slide content view.
 
------
-
 ## Screenshot for Demo
 
 ![demo](./SPSlideTabBarControllerDemo/screenshots/demo.gif)
 
------
+## Installation
+
+#### Installation with CocoaPods
+
+###### Podfile
+
+To integrate SPSlideTabBarController into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '7.0'
+
+pod 'SPSlideTabBarController', '~> 1.0.0'
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
+## Requirements
+
+Minimum iOS Target: iOS 7.0
 
 ## Usage
 
 1. SPSlideTabBarController
 
-  - initialize
+  - Initialize a SPSlideTabBarController
 
     ```objc
     TableViewController *tableViewController = [[TableViewController alloc] init];
@@ -32,13 +53,13 @@ A TabBarController with top TabBar and slide content view.
     SPSlideTabBarController *slideTabBarController = [[SPSlideTabBarController alloc] initWithViewController:@[tableViewController, collectionViewController, scrollViewController, viewController] initTabIndex:2];
     ```
 
-  - selected a tab
+  - Selected a tab with a SPSlideTabBarController
 
     ```objc
     - (void)selectTabIndex:(NSUInteger)tabIndex animated:(BOOL)animated；
     ```
 
-  - add a UIViewController
+  - Add a UIViewController to a SPSlideTabBarController
 
     ```objc
     /**
@@ -59,7 +80,7 @@ A TabBarController with top TabBar and slide content view.
     - (void)addViewController:(nonnull UIViewController *)viewController atIndex:(NSUInteger)tabIndex;
     ```
 
-2. custom a slide tab bar
+2. Custom a slide tab bar
 
   a easy way to define a custom slide tab bar is to define a view which follows the protocol `SPSlideTabBarProtocol`.
 
@@ -89,8 +110,12 @@ A TabBarController with top TabBar and slide content view.
     @end
     ```
 
-3. style slide tab bar item
+3. Style slide tab bar item
 
   ```objc
   [[SPSlideTabBarItem appearance] setBarItemSelectedTextColor:[UIColor blueColor]];
   ```
+
+## License
+
+SPSlideTabBarController is released under the MIT license. See LICENSE for details.
