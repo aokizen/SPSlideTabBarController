@@ -1,4 +1,4 @@
-# SPSlideTabViewController
+# SPSlideTabController
 
 A TabBarController with top TabBar and slide content view.
 
