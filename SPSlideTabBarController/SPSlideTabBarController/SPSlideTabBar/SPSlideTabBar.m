@@ -162,9 +162,6 @@
     [buttons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger index, BOOL *stop) {
         if (button == sender) {
             [self selectTabAtIndex:index];
-            if (self.delegate && [self.delegate respondsToSelector:@selector(slideTabBar:didSelectIndex:)]) {
-                [self.delegate slideTabBar:self didSelectIndex:index];
-            }
             *stop = YES;
         }
     }];
@@ -240,6 +237,11 @@
     }
     
     _selectedTabIndex = index;
+    
+    // notify delegate that the selection has been done.
+    if (self.delegate && [self.delegate respondsToSelector:@selector(slideTabBar:didSelectIndex:)]) {
+        [self.delegate slideTabBar:self didSelectIndex:index];
+    }
 }
 
 /**
