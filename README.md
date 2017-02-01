@@ -18,7 +18,7 @@ To integrate SPSlideTabBarController into your Xcode project using CocoaPods, sp
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
 
-pod 'SPSlideTabBarController', '~> 1.0.0'
+pod 'SPSlideTabBarController', '~> 1.0.1'
 ```
 
 Then, run the following command:
@@ -120,7 +120,7 @@ Minimum iOS Target: iOS 7.0
   - example code
 
     In the method `- (void)resetTabBarItemViews` in the `SPFixedSlideTabBar`, there are following code:
-    
+
     ```objc
     [self.slideTabBarItems enumerateObjectsUsingBlock:^(SPSlideTabBarItem *item, NSUInteger index, BOOL *stop) {
 

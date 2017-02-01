@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SPSlideTabBarController"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "A TabBarController with top TabBar and slide content view."
 
   # This description is used to generate tags and improve search results.
