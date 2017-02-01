@@ -63,6 +63,9 @@
  */
 - (void)addViewController:(nonnull UIViewController *)viewController atIndex:(NSUInteger)tabIndex {
     
+    // judge if there is none viewControllers before add
+    BOOL isTheFirstViewController = (self.viewControllers.count == 0);
+    
     NSUInteger index = tabIndex;
     if (index > self.viewControllers.count) {
         index = self.viewControllers.count;
@@ -78,6 +81,11 @@
     
     if ([self isViewLoaded]) {
         
+        // if slide tab bar view controller has loaded, and the first view controller is added after that,
+        // make the first view controller visible manually, otherwise it will not been visible untill tab is clicked.
+        if (isTheFirstViewController) {
+            [self _makeViewControllerVisibleAtIndex:index];
+        }
     }
 }
 
