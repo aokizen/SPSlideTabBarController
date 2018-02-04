@@ -19,7 +19,7 @@
 		6F1551911C7B0AE500B9EBBC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F15518B1C7B0AE500B9EBBC /* main.m */; };
 		6F1551951C7B0AEF00B9EBBC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F1551931C7B0AEF00B9EBBC /* Info.plist */; };
 		6F15519A1C7B0AF300B9EBBC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F1551981C7B0AF300B9EBBC /* Info.plist */; };
-		6F15519F1C7B0C8500B9EBBC /* libSPSlideTabBarController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F15519E1C7B0C8500B9EBBC /* libSPSlideTabBarController.a */; };
+		A1DC626D2026DBF500CB7E07 /* libSPSlideTabBarController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1DC626E2026DBF500CB7E07 /* libSPSlideTabBarController.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,10 +60,10 @@
 		6F1551941C7B0AEF00B9EBBC /* SPSlideTabBarControllerDemoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSlideTabBarControllerDemoTests.m; sourceTree = "<group>"; };
 		6F1551981C7B0AF300B9EBBC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F1551991C7B0AF300B9EBBC /* SPSlideTabBarControllerDemoUITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSlideTabBarControllerDemoUITests.m; sourceTree = "<group>"; };
-		6F15519E1C7B0C8500B9EBBC /* libSPSlideTabBarController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSPSlideTabBarController.a; path = "../SPSlideTabBarController/build/Debug-iphoneos/libSPSlideTabBarController.a"; sourceTree = "<group>"; };
 		6F6D91C61C7AE94200CBD75D /* SPSlideTabBarControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPSlideTabBarControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F6D91DF1C7AE94200CBD75D /* SPSlideTabBarControllerDemo.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPSlideTabBarControllerDemo.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F6D91EA1C7AE94200CBD75D /* SPSlideTabBarControllerDemo.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPSlideTabBarControllerDemo.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1DC626E2026DBF500CB7E07 /* libSPSlideTabBarController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSPSlideTabBarController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F15519F1C7B0C8500B9EBBC /* libSPSlideTabBarController.a in Frameworks */,
+				A1DC626D2026DBF500CB7E07 /* libSPSlideTabBarController.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +165,7 @@
 		6F6D92131C7AE9E300CBD75D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6F15519E1C7B0C8500B9EBBC /* libSPSlideTabBarController.a */,
+				A1DC626E2026DBF500CB7E07 /* libSPSlideTabBarController.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

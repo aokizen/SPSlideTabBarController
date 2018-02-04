@@ -335,12 +335,22 @@
     }
 }
 
+/**
+ * changes indicator color
+ *
+ *
+*/
+- (void)changeIndicatorColor:(UIColor *)color {
+    self.indicatorLine.backgroundColor = color;
+}
+    
+    
 #pragma mark - getter
-
+    
 - (CGSize)intrinsicContentSize {
     return CGSizeMake(UIViewNoIntrinsicMetric, 44);
 }
-
+    
 - (NSArray <UIButton *> *)tabBarButtonSubviews {
     NSMutableArray <UIButton *> *buttons = [NSMutableArray array];
     for (UIView *view in self.scrollView.subviews) {
@@ -350,7 +360,7 @@
     }
     return buttons;
 }
-
+    
 @end
 
 

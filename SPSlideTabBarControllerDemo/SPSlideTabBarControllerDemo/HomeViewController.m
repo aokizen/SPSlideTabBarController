@@ -42,7 +42,7 @@
 
 - (instancetype)initWithDefaultViewControllersAndSizingTabBar:(BOOL)sizingTabBar initialIndex:(NSUInteger)initialIndex {
     
-    [[SPSlideTabBarItem appearance] setBarItemSelectedTextColor:[UIColor blueColor]];
+    [[SPSlideTabBarItem appearance] setBarItemSelectedTextColor:[UIColor whiteColor]];
     
     TableViewController *tableViewController = [[TableViewController alloc] init];
     [tableViewController setTitle:@"table"];
@@ -58,6 +58,7 @@
     
     self = [self initWithViewController:@[tableViewController, collectionViewController, scrollViewController, viewController] initTabIndex:initialIndex];
     
+    
     if (self) {
         _sizingTabBar = sizingTabBar;
     }
@@ -70,6 +71,7 @@
     // Do any additional setup after loading the view.
 
     [self.slideTabView setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1]];
+    [self.slideTabView changeIndicatorColor:[UIColor whiteColor]];
     [self setTitle:@"homeViewController"];
 }
 

@@ -89,4 +89,11 @@
  */
 - (void)fixIndicatorWithScrollOffset:(CGFloat)offset;
 
+/**
+ * changes indicator color
+ *
+ *
+*/
+- (void)changeIndicatorColor:(UIColor*)color;
+
 @end
